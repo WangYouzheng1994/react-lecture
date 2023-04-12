@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        #myhhhhhh2 {
+            background-color: mediumvioletred;
+        }
+        .h2 {
+            width: 150px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<!-- 一定要写成babel -->
+<script type="text/babel">
+    // 1. 创建函数式组件
+    function MyCusComponent() {
+        // babel会开启严格模式，也就是this禁止指向window babel官网：babeljs.cn
+        // 通过官方提供的工具可以看到此代码 最前面有个 "use strict";
+        console.log(this)
+        return <h2>我是用函数定义的组件（适用于【简单组件】的定义）</h2>
+    }
+
+    ReactDOM.render(<MyCusComponent/>, document.getElementById('root'));
+</script>
+</html>

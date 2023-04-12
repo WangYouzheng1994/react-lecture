@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #myhhhhhh2 {
+            background-color: mediumvioletred;
+        }
+
+        .h2 {
+            width: 150px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<!-- 一定要写成babel -->
+<script type="text/javascript">
+    // class语法
+    // 对象实例 prototype指向了原型对象
+    class Person {
+        // 构造器
+        constructor(name, age) {
+            // this指向了实例
+            this.name = name;
+            this.age = age;
+        }
+
+        // 普通方法，会放在原型对象上用。 属性是挂在实例对象上的
+        speak() {
+            // 模板字符串
+            console.log(`我叫${this.name}, 我的年龄是${this.age}`)
+        }
+    }
+
+    let p1 = new Person("名字");
+    let p2 = new Person("名字", "123")
+    console.log(p1, p2)
+
+
+    // 继承语法
+    class Student extends Person {
+        // 当定义了构造器，必须要调用super，否则会报错
+        constructor(name, age, grade) {
+            // super指向了父类构造器，他其实弥补了 es5的原型链的指向
+            super(name, age)
+            // this指向了实例
+            this.grade = grade;
+        }
+    }
+
+    let student = new Student("学生名字", "123111", "28");
+    // 当不定义构造器的时候，父类有的参数不会丢。他会按照父类构造器的顺序赋值
+    console.log(student);
+    console.log(student.__proto__ === Student.prototype)
+
+    console.log(student.__proto__.__proto__ === Person.prototype)
+
+    // 构造函数A
+    var A = function (name) {
+        this.name = name;
+        this.myfunction = function() {
+
+        }
+        staticFun1 = function() {
+
+        }
+    }
+    // 静态，挂在构造器上
+    A.staticFun2 = function() {
+        console.log("构造器fun2")
+    }
+    // 静态，挂在原型对象上
+/*    A.prototype.staticFun2 = function() {
+        console.log("原型链的fun2")
+    }*/
+    let aa = new A("123");
+
+    console.log(aa, A.staticFun2());
+
+    // 构造函数B
+    function B(name) {
+        this.name = name;
+        this.myfunction = function() {
+
+        }
+        // 静态 为什么是静态？ 因为，他是直接挂在constuctor对象里面的
+        B.staticN = '123'
+        B.staticFun1 = function() {
+
+        }
+    }
+    let b1 = new B();
+    // 体现静态
+    b1.__proto__.staticN = '321'
+    console.log(b1);
+    let b2 = new B();
+    console.log(b2)
+    // 改的是构造器
+    B.staticN = '变更'
+    // 引出下面原型链了哈~
+    console.log(b1.staticN)
+    console.log(b2.staticN)
+
+    console.log(b1.__proto__)
+    console.log("啦啦啦啦", B.prototype, B.staticN)
+
+
+    // 捋捋原型链
+    // 首先，function A 其实就是构造函数、构造方法、构造器，其实叫构造器更合适，因为Chrome浏览器把它称之为constuctor方法。我们可以用new A调用，生成一个对象。
+    // 对象实例.__proto__ -> 类的Prototype（构造器的prototype） ->  中的constuctor -> 类的构造器（就是构造函数）
+    // constuctor.prototype -> 类的Prototype（构造器的prototype）
+
+    // 原型链的查找循序
+    // 当我们通过 对象.方法名，他会先去当前对象的去找，发现找不到，再去__proto__找到类的prototype中去找，如果再找不到
+    // 当存在继承关系的时候 当前类的prototype的__proto__会指向了 父类的prototype 继续寻找~ 一层一层的直到找到object中
+
+</script>
+</html>
