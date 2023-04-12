@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-<div id="root"></div>
+<div id="title"></div>
 </body>
 <!-- 一定要写成babel -->
 <script type="text/babel">
@@ -18,12 +17,7 @@
     // 准备虚拟dom -- jsx语法
     const vdom = <h1>nihao</h1>
 
-    // 虚拟dom, 容器
-    ReactDOM.render(vdom, document.getElementById('root'));
-
-
-    // 以下为react 18的api语法
-
+    ReactDOM.render(vdom, document.getElementById('title'));
     /*function MyApp() {
         return <h1>Hello, world!</h1>;
     }

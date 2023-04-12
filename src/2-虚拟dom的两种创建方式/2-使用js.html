@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
+<!--容器-->
 <div id="root"></div>
 </body>
 <!-- 一定要写成babel -->
-<script type="text/babel">
+<script type="text/javascript">
 
-    // 准备虚拟dom -- jsx语法
-    const vdom = <h1>nihao</h1>
+    // 准备虚拟dom -- js语法React.createElement(標簽名字，标签属性，标签内容);
+    const vdom = React.createElement('h1', {id:'title'}, "我是h1的内容");
+    // 嵌套的虚拟dom
+    const vdom_span = React.createElement('h1', {id:'title'}, React.createElement('span', {}, '我是span里面的内容'));
+    // 给容器root 放入虚拟dom
+    // ReactDOM.render(vdom, document.getElementById('root'));
+    ReactDOM.render(vdom_span, document.getElementById('root'));
 
-    // 虚拟dom, 容器
-    ReactDOM.render(vdom, document.getElementById('root'));
-
-
-    // 以下为react 18的api语法
 
     /*function MyApp() {
         return <h1>Hello, world!</h1>;
