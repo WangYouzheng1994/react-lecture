@@ -5,3 +5,7 @@ https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopl
 
 注：团队不能翻墙输出插件方法 https://www.cnblogs.com/zhncnblogs/p/16772352.html
 C:\Users\Administrator\AppData\Local\Google\Chrome\User Data/Default/Extensions
+
+2. 组件的两种定义方式
+* 函数式组件
+* 类组件
