@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<!-- 一定要写成babel -->
+<script type="text/babel">
+    // 准备模拟数据
+    const data = ['Angular', 'React', 'Vue']
+
+    // 准备虚拟dom
+    const vdom = (
+        <div>
+            <h1>前端js框架列表</h1>
+            <ul>
+                // 因为支持的是js的表达式也就是必须有返回值，所以不能用for，新增key避免警告
+                {data.map((item, index) => {
+                    return <li key={index}>{item}</li>
+                })}
+            </ul>
+        </div>
+    )
+
+    // 渲染
+    ReactDOM.render(vdom, document.getElementById('root'));
+</script>
+</html>

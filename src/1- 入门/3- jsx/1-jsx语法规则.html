@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        #myhhhhhh2 {
+            background-color: mediumvioletred;
+        }
+        .h2 {
+            width: 150px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<!-- 一定要写成babel -->
+<script type="text/babel">
+    const domid= 'myHHHHHH2'
+    const domData = 'nihao'
+    // 准备虚拟dom -- jsx语法
+
+    const vdom = (
+        <div>
+            <h2 className='h2' id={domid.toLowerCase()}>
+                <span style={{color:"white"}}>{domData.toUpperCase()}</span>
+            </h2>
+            <h2 className='h2' id={domid.toLowerCase()}>
+                <span style={{color:"white"}}>{domData.toUpperCase()}</span>
+            </h2>
+            <input type='text' value="我是默认值"/>
+        </div>
+    )
+
+    ReactDOM.render(vdom, document.getElementById('root'));
+</script>
+</html>
