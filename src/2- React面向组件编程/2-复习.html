@@ -22,6 +22,8 @@
     // class语法
     // 对象实例 prototype指向了原型对象
     class Person {
+        // 相当于挂在实例上了
+        lalala = '123'
         // 构造器
         constructor(name, age) {
             // this指向了实例
@@ -33,6 +35,11 @@
         speak() {
             // 模板字符串
             console.log(`我叫${this.name}, 我的年龄是${this.age}`)
+        }
+
+        // 这种定义，会放在当前实例对象上
+        speakonSelf = function() {
+
         }
     }
 
