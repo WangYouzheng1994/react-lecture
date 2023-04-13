@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+    class Person extends React.Component {
+        render() {
+            console.log(this)
+            const {name, age, weight} = this.props;
+            // return <h1>人的名字是：{this.props.name}, 年龄是：{this.props.age}, 体重是： {this.props.weight}</h1>
+            return <h1>人的名字是：{name}, 年龄是：{age}, 体重是： {weight}</h1>
+        }
+
+    }
+
+    const p = {name:'老王', age: 18}
+    // 使用展开符号 展开对象，切记是babel + react.development.js 合并以后提供了 展开对象的能力，原生js是不行的哈
+    ReactDOM.render(<Person {...p}/>, document.getElementById("root"))
+</script>
+
+</body>
+</html>
