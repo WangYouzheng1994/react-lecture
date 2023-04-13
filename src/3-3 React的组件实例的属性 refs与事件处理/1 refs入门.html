@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    class Demo extends React.Component {
+
+        showLeftData = () => {
+            let {input1} = this.refs;
+            alert(input1.value)
+        }
+
+        showRightData = () => {
+            let{input2} = this.refs;
+            alert(input2.value);
+        }
+
+        render() {
+            return (
+                <div>
+                    <input ref="input1" type="text" placeholder="点击按钮提示"/>
+                    <button onClick={this.showLeftData}>点我提示左侧的数据</button>
+                    <input ref="input2" onBlur={this.showRightData} type="text" placeholder="失去焦点事件"/>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo/>, document.getElementById('root'));
+
+
+</script>
+
+
+</body>
+</html>
