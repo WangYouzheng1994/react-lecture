@@ -21,6 +21,7 @@
     class Person extends React.Component {
         render() {
             console.log(this)
+            // 注意：props是只读的，不可以修改。
             const {name, age, weight} = this.props;
             // return <h1>人的名字是：{this.props.name}, 年龄是：{this.props.age}, 体重是： {this.props.weight}</h1>
             return <h1 onClick={this.customFun}>人的名字是：{name}, 年龄是：{age}, 体重是： {weight}</h1>
