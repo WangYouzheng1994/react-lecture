@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- 一定要写成babel -->
+<script type="text/babel">
+    // 1. 创建函数式组件： 三要素，1 继承 2。 实现render 3. render必须要有返回值。
+    class MyCusComponent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {isHot: false, wind: "下雨"}
+            // 在当前实例对象中声明了一个changeWeather
+            /**
+             * bind的作用是，给指定的函数，设置this，并返回这个函数的引用。
+             * call和apply是立刻执行指定的函数，他们也是会更改this，但是传入的参数列表方式不同
+             * this.changeWeather.apply(this, 数组)
+             * this.changeWeather.call(this, a, b, c, d)
+             */
+            this.changeWeather = this.changeWeather.bind(this)
+        }
+
+        // this 指向MyCusComponent的自身实例对象
+        render() {
+            // 解构赋值
+            let {isHot, wind} = this.state;
+            // onClick是React封装的，不是html原生的，切记。
+            return <h2 onClick={this.changeWeather}>今天的天气很{isHot ? "热" : "冷"}, {wind}</h2>
+        }
+
+        /**
+         * 当我们没有给changeWeather设置this的时候，changeWeather的this是undefined
+         * 原因：
+         * let obj = new Weather();
+         * obj.changeWeather()； 这时候是有this的。
+         * 如果是这样就没了：
+         * let func = obj.chageWeather;
+         * func(); // 没有this
+         *
+         * changeWeather没有再构造器中指定this 的时候，changeWeather方法是在原型对象上的。
+         */
+        changeWeather() {
+            let isHot = this.state.isHot;
+            // 设置state，替换对应的属性
+            this.setState({isHot: !isHot})
+        }
+    }
+
+    // 渲染组件到页面
+    ReactDOM.render(<MyCusComponent/>, document.getElementById('root'));
+
+    // 执行了ReactDom.render后干了啥？
+    /**
+     * 1. 解析标签，找到了MyCusComponent
+     * 2. 解析MyCusComponent并发现是类组件，随后实例调用 原型的render方法。 谁调的render？ react框架
+     * 3. render返回的jsx语法中的虚拟dom结构转换成真dom，进行显示
+     */
+</script>
+</body>
+</html>
