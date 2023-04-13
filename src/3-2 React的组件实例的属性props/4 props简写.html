@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- prop-types development version -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!-- 针对props数据进行类型限制 -->
+<script type="text/babel">
+    /*const PropTypes = require("prop-types"); 为了看源码有哪些类型*/
+
+    class Person extends React.Component {
+        render() {
+            console.log(this)
+            // 注意：props是只读的，不可以修改。
+            const {name, age, weight} = this.props;
+            // return <h1>人的名字是：{this.props.name}, 年龄是：{this.props.age}, 体重是： {this.props.weight}</h1>
+            return <h1 onClick={this.customFun}>人的名字是：{name}, 年龄是：{age}, 体重是： {weight}</h1>
+        }
+        myFun = () => {
+            console.log(123)
+        }
+    }
+    // 定义person类型的属性限制规则
+    // https://legacy.reactjs.org/docs/typechecking-with-proptypes.html#gatsby-focus-wrapper
+    // 具体支持的类型为 https://legacy.reactjs.org/docs/typechecking-with-proptypes.html#proptypes
+    Person.propTypes = {
+        // name: React.PropTypes.string15.5版本以前是这么写，15.5及以后 这块逻辑全都抽出来新增到了一个依赖props-type
+        name: PropTypes.string, // 必须为字符串类型
+        lala: PropTypes.any.isRequired, // 任意类型的但是必填
+        age: PropTypes.number.isRequired, // 数值类型 必填
+        req: PropTypes.any.isRequired,
+        customFun: PropTypes.func
+    }
+
+    // 定义person类型的默认值，设置默认值
+    Person.defaultProps = {
+        req: "我是默认值"
+    }
+
+    const p = {name:'18', age: 18, lala:"", customFun: () => {console.log(123)}}
+    // 使用展开符号 展开对象，切记是babel + react.development.js 合并以后提供了 展开对象的能力，原生js是不行的哈
+    ReactDOM.render(<Person {...p}/>, document.getElementById("root"))
+</script>
+
+
+</body>
+</html>
