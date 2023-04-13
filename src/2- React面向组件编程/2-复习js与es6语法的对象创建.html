@@ -46,8 +46,16 @@
         speakArrow = () => {
 
         }
-    }
+        // 这样也是挂在构造器身上
+        static bca = 123
 
+        // 静态的挂在构造器上
+        static staFun() {
+
+        }
+    }
+    // 这样是挂在构造器身上
+    Person.abc = 123
     let p1 = new Person("名字");
     let p2 = new Person("名字", "123")
     console.log(p1, p2)
@@ -73,7 +81,7 @@
 
     // --- 原生模式https://blog.csdn.net/sinat_18194249/article/details/129287210
     // 构造函数A
-    var A = function (name) {
+    let A = function (name) {
         this.name = name;
         this.myfunction = function() {
 

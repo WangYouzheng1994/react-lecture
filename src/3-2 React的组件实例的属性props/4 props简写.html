@@ -19,6 +19,13 @@
     /*const PropTypes = require("prop-types"); 为了看源码有哪些类型*/
 
     class Person extends React.Component {
+        /**
+         * 简化2 构造器要不要写只有两种情况
+         * 1. 内部初始化state
+         * 2. 接收props，但是不声明，自己也会绑定的
+         * 注意：构造器必须调用super(props)并且传入props
+         */
+
         render() {
             console.log(this)
             // 注意：props是只读的，不可以修改。
@@ -26,28 +33,36 @@
             // return <h1>人的名字是：{this.props.name}, 年龄是：{this.props.age}, 体重是： {this.props.weight}</h1>
             return <h1 onClick={this.customFun}>人的名字是：{name}, 年龄是：{age}, 体重是： {weight}</h1>
         }
+
         myFun = () => {
             console.log(123)
         }
-    }
-    // 定义person类型的属性限制规则
-    // https://legacy.reactjs.org/docs/typechecking-with-proptypes.html#gatsby-focus-wrapper
-    // 具体支持的类型为 https://legacy.reactjs.org/docs/typechecking-with-proptypes.html#proptypes
-    Person.propTypes = {
-        // name: React.PropTypes.string15.5版本以前是这么写，15.5及以后 这块逻辑全都抽出来新增到了一个依赖props-type
-        name: PropTypes.string, // 必须为字符串类型
-        lala: PropTypes.any.isRequired, // 任意类型的但是必填
-        age: PropTypes.number.isRequired, // 数值类型 必填
-        req: PropTypes.any.isRequired,
-        customFun: PropTypes.func
+
+        /**
+         * 简化1-> static 声明propTypes和defaultProps
+         */
+            // 定义person类型的属性限制规则
+        static propTypes = {
+            // name: React.PropTypes.string15.5版本以前是这么写，15.5及以后 这块逻辑全都抽出来新增到了一个依赖props-type
+            name: PropTypes.string, // 必须为字符串类型
+            lala: PropTypes.any.isRequired, // 任意类型的但是必填
+            age: PropTypes.number.isRequired, // 数值类型 必填
+            req: PropTypes.any.isRequired,
+            customFun: PropTypes.func
+        }
+
+        // 定义person类型的默认值，设置默认值
+        static defaultProps = {
+            req: "我是默认值"
+        }
     }
 
-    // 定义person类型的默认值，设置默认值
-    Person.defaultProps = {
-        req: "我是默认值"
-    }
 
-    const p = {name:'18', age: 18, lala:"", customFun: () => {console.log(123)}}
+    const p = {
+        name: '18', age: 18, lala: "", customFun: () => {
+            console.log(123)
+        }
+    }
     // 使用展开符号 展开对象，切记是babel + react.development.js 合并以后提供了 展开对象的能力，原生js是不行的哈
     ReactDOM.render(<Person {...p}/>, document.getElementById("root"))
 </script>
