@@ -12,39 +12,46 @@
 <body>
 <div id="root"></div>
 
-<!--回调ref 是为了让dom的绑定自定义的function，而不是放到refs里面~-->
+<!-- 慎用ref能力，不要过度使用。如果只是为了拿到当前dom元素，其实事件也会把dom传递进来 -->
 <script type="text/babel">
     class Demo extends React.Component {
+        // 创建ref对象
+        myRef = React.createRef();
+        myRef2 = React.createRef();
 
         showLeftData = () => {
-            let {input1} = this; // 旧写法
-            alert(input1.value)
+            let {myRef} = this;
+            alert(myRef.current.value)
         }
 
         showRightData = () => {
-            let {input2} = this;
-            alert(input2.value);
+            let{myRef2} = this;
+            alert(myRef2.current.value);
         }
 
-        saveInputRef = (current) => {
-            this.input1 = current;
-            console.log(this.input1);
+        /**
+         * 这里能拿到event
+         */
+        showData2 = (event) => {
+           console.log(event.target.value);
         }
 
         render() {
             return (
                 <div>
-                    {/* 使用class的方式绑定 */}
-                    <input ref={this.saveInputRef} type="text" placeholder="点击按钮提示"/>
+                    <input ref={this.myRef} type="text" placeholder="点击按钮提示"/>
                     <button onClick={this.showLeftData}>点我提示左侧的数据</button>
-                    { /* 更新渲染这个input， 会先调用一次，c传入null，然后c再传入新值 */}
-                    <input ref={(c) => this.input2 = c} onBlur={this.showRightData} type="text" placeholder="失去焦点事件"/>
+                    {/*<input ref={this.myRef2} onBlur={this.showRightData} type="text" placeholder="失去焦点事件"/>*/}
+                    <input onBlur={this.showData2} type="text" placeholder="失去焦点提示数据"/>
                 </div>
             )
         }
     }
 
     ReactDOM.render(<Demo/>, document.getElementById('root'));
+
+
+
 </script>
 </body>
 </html>
