@@ -3,8 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
+<div id="root"></div>
+<!--  生命周期回调（钩子）  -->
 
+<script type="text/babel">
+    class Life extends React.Component {
+        state = {opacity: 1}
+
+        unMount = () => {
+            alert("要卸載了哈~")
+            // 移除顶层挂载
+            ReactDOM.unmountComponentAtNode(document.getElementById("root"))
+        }
+
+        componentWillMount() {
+        }
+
+        /**
+         * 挂载结束回调
+         */
+        componentDidMount() {
+            console.log("componentDidMount", this)
+        }
+
+        render() {
+            console.log("render", this)
+
+            return (
+                <div>
+                    <input onClick={this.unMount} type="text"/>
+                </div>
+            )
+        }
+
+        componentWillUnmount() {
+
+        }
+    }
+
+    ReactDOM.render(<Life/>, document.getElementById('root'));
+</script>
 </body>
 </html>
