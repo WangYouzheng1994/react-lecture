@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<!--
+1. 页面中所有输入值的组件
+2. 输入的值维护到了state状态中。。
+3. 这是受控组件的核心：使用值的时候不需要通过ref获取dom的方式获取值了，直接去state中拿出来用就可以了
+
+-->
+<script type="text/babel">
+    class Demo extends React.Component {
+        setUsername = (event) => {
+            this.setState({username: event.target.value})
+        }
+
+        setPassword = (event) => {
+            this.setState({password: event.target.value})
+        }
+
+        handleSubmit = (event) => {
+            // 阻止表单的默认跳转
+            event.preventDefault();
+            const {username, password} = this.state
+            alert(`用户名是： ${username}, 密码是：${password}`)
+        }
+
+        render() {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    {/* ref 引用绑定成员变量 */}
+                    用户名： <input onChange={this.setUsername} type="text" name="username"/>
+                    密码：<input onChange={this.setPassword} type="password" name="password"/>
+                    <button type="submit">提交</button>
+                </form>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo/>, document.getElementById('root'));
+
+
+</script>
+</body>
+</html>
