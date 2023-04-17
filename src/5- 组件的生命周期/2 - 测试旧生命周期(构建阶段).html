@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class Count extends React.Component {
+        constructor(props) {
+            console.log("constructor")
+            super(props);
+            // 初始化状态
+            this.state = {count: 0}
+        }
+
+        /**
+         * 挂载前
+         */
+        componentWillMount() {
+            console.log("componentWillMount")
+        }
+
+        /**
+         * 实际挂载的内容
+         */
+        render() {
+            console.log("render");
+            return (
+                <div>
+                    <h2 onClick={this.add}>当前的值是{this.state.count}</h2>
+                    <button onClick={this.unmount}> 卸载挂载的组件</button>
+                </div>
+
+            )
+        }
+
+        /**
+         * 挂载结束
+         */
+        componentDidMount() {
+            console.log("componentDidMount")
+        }
+
+        add = () => {
+            const {count} = this.state;
+            this.setState({count: count + 1})
+        }
+
+        unmount = () => {
+            console.log("unmount")
+            ReactDOM.unmountComponentAtNode(document.getElementById("root"));
+        }
+
+        componentWillUnmount() {
+            console.log("componentWillUnmount")
+        }
+    }
+
+    ReactDOM.render(<Count/>, document.getElementById('root'));
+
+</script>
+</body>
+</html>
