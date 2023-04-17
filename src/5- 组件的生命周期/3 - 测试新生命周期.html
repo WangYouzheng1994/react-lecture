@@ -3,8 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+    class Count extends React.Component {
+        constructor(props) {
+            console.log("constructor")
+            super(props);
+            // 初始化状态
+            this.state = {count: 0}
+        }
+
+        /**
+         * 要求1： 必须是static
+         * 要求2： 得有返回值: 状态对象 或者是 null
+         *
+         * props 傳入的props
+         * state 當前的state
+         *
+         */
+        static getDerivedStateFromProps(props, state) {
+            console.log("getDerivedStateFromProps", props, state)
+            return null;
+        }
+
+        /*
+            被getDerivedStateFromProps替换
+                /!**
+                 * 挂载前
+                 *!/
+                componentWillMount() {
+                    console.log("componentWillMount")
+                }
+        */
+
+        /**
+         * 实际挂载的内容
+         */
+        render() {
+            console.log("render");
+            return (
+                <div>
+                    <h2 onClick={this.add}>当前的值是{this.state.count}</h2>
+                    <button onClick={this.unmount}> 卸载挂载的组件</button>
+                </div>
+
+            )
+        }
+
+        /**
+         * 挂载结束
+         */
+        componentDidMount() {
+            console.log("componentDidMount")
+        }
+
+        add = () => {
+            const {count} = this.state;
+            this.setState({count: count + 1})
+        }
+
+        unmount = () => {
+            console.log("unmount")
+            ReactDOM.unmountComponentAtNode(document.getElementById("root"));
+        }
+
+        /**
+         * 卸载
+         */
+        componentWillUnmount() {
+            console.log("componentWillUnmount")
+        }
+
+        // ---------------- 以下为组件更新阶段的回调
+        /**
+         * 通过setState触发，也就是数据驱动dom，如果此方法返回false，那么页面不会更新
+         * @param nextProps
+         * @param nextState
+         * @param nextContext
+         * @returns {boolean}
+         */
+        shouldComponentUpdate(nextProps, nextState, nextContext) {
+            console.log("shouldComponentUpdate")
+            return true;
+        }
+
+        /*
+        被getDerivedStateFromProps替换
+                /!**
+                 * 组件更新前的动作
+                 *
+                 * @param nextProps
+                 * @param nextState
+                 * @param nextContext
+                 *!/
+                componentWillUpdate(nextProps, nextState, nextContext) {
+                    console.log("componentWillUpdate")
+                }*/
+
+        // render
+
+        /**
+         * 获取快照
+         * 之前的props值
+         * 之后的state值
+         * 返回的是快照值，用以传递给componentDidUpdate
+         */
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+            console.log("getSnapshotBeforeUpdate")
+            return "123"
+        }
+
+        // React渲染DOM
+
+        /**
+         * 组件更新后
+         *
+         * @param prevProps
+         * @param prevState
+         * @param snapshot getSnapshotBeforeUpdate钩子的返回值
+         */
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            console.log(`componentDidUpdate:prevProps:${prevProps}, prevState:${prevState}, snapshot:${snapshot}`)
+        }
+    }
+
+    // 虽然引入的是react18 但是此api进行初始化，会运行在react17下
+    ReactDOM.render(<Count name="wyzaaaa"/>, document.getElementById('root'));
+
+</script>
 
 </body>
 </html>

@@ -60,7 +60,7 @@
             console.log("componentWillUnmount", this)
         }
     }
-
+    // 虽然引入的是react18 但是此api进行初始化，会运行在react17下
     ReactDOM.render(<Life/>, document.getElementById('root'));
 </script>
 </body>

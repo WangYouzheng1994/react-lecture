@@ -94,8 +94,8 @@
         /**
          * 组件更新后
          *
-         * @param prevProps
-         * @param prevState
+         * @param prevProps 修改props之前的值
+         * @param prevState 修改的state之前的值
          * @param snapshot
          */
         componentDidUpdate(prevProps, prevState, snapshot) {
@@ -103,7 +103,7 @@
         }
 
     }
-
+    // 虽然引入的是react18 但是此api进行初始化，会运行在react17下
     ReactDOM.render(<Count/>, document.getElementById('root'));
 
 </script>
