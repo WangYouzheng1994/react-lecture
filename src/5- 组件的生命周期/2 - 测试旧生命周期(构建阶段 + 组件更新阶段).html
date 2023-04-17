@@ -58,9 +58,50 @@
             ReactDOM.unmountComponentAtNode(document.getElementById("root"));
         }
 
+        /**
+         * 卸载
+         */
         componentWillUnmount() {
             console.log("componentWillUnmount")
         }
+
+        // ---------------- 以下为组件更新阶段的回调
+        /**
+         * 通过setState触发，也就是数据驱动dom，如果此方法返回false，那么页面不会更新
+         * @param nextProps
+         * @param nextState
+         * @param nextContext
+         * @returns {boolean}
+         */
+        shouldComponentUpdate(nextProps, nextState, nextContext) {
+            console.log("shouldComponentUpdate")
+            return true;
+        }
+
+        /**
+         * 组件更新前的动作
+         *
+         * @param nextProps
+         * @param nextState
+         * @param nextContext
+         */
+        componentWillUpdate(nextProps, nextState, nextContext) {
+            console.log("componentWillUpdate")
+        }
+
+        // render
+
+        /**
+         * 组件更新后
+         *
+         * @param prevProps
+         * @param prevState
+         * @param snapshot
+         */
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            console.log("componentDidUpdate")
+        }
+
     }
 
     ReactDOM.render(<Count/>, document.getElementById('root'));
