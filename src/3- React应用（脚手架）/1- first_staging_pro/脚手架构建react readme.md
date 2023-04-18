@@ -6,14 +6,17 @@
 使用脚手架
 1. 安装脚手架库 npm install -g create-react-app
 > 又出各种傻逼问题。换成pnpm安装，详见下面的pnpm的使用
-2. 在期望创建项目的目录下执行
+2. 在期望创建项目的目录下执行以下命令 创建项目
 ```
 pnpm install create-react-app -g 
 
 随后创建项目 
 pnpm create react-app first_staging_pro_test
 ```
-
+3. 启动项目
+```
+pnpm run start
+```
 
 ---
 ##### jetbrains系列配置terminal为git bash，用来使用linux命令
@@ -35,7 +38,7 @@ npm i pnpm -g
 
 pnpm config get registry //查看源
 
-pnpm config set registry https://registry.npmmirror.com //切换淘宝源
+pnpm config set registry https://registry.npmmirror.com //切换源
 
 pnpm install 安装包 
 
