@@ -25,8 +25,8 @@ function App() {
 */
 
 import React, {Component} from 'react'
-import Hello from './components/Hello/hello'
-import Welcome from './components/Welcome/welcome'
+import Hello from './components/Hello'
+import Welcome from './components/Welcome'
 
 // 创建类式组件,// 对外暴露组件
 export default class App extends Component {
