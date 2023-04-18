@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import './hello.css'
+import h from './hello.module.css'
 
 export default class hello extends Component {
     render() {
-        return <h2 className="hhh">hello，我是组件化了~</h2>
+        return <h2 className={h.hhh}>hello，我是组件化了~</h2>
     }
 }
