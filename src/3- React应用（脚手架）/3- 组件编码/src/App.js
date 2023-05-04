@@ -33,12 +33,47 @@ import './App.css'
 
 // 创建类式组件
 class App extends React.Component {
+    // 初始化状态
+    state = {
+        todos: [
+            {id: '001', name: '吃饭', done: true},
+            {id: '002', name: '睡觉', done: true},
+            {id: '003', name: '打豆豆', done: false},
+            {id: '004', name: '撸串', done: false},
+        ]
+    }
+
+    /**
+     * 添加一个todo
+     *
+     * @param todoObj
+     */
+    addChild = (todoObj) => {
+        const {todos} = this.state;
+        // 追加todo生成新的数组
+        const newTodos = [todoObj, ...todos]
+        // 变更值~
+        this.setState({todos:newTodos});
+    }
+
+    /**
+     * 更新一个todo
+     *
+     * @param todoObj
+     */
+    updateChild = (todoObj) => {
+        const {todos} = this.state;
+
+    }
+
     render() {
+        const {todos} = this.state;
         return (
             <div className="todo-container">
                 <div className="todo-wrap">
-                    <Header></Header>
-                    <List></List>
+                    <Header addChild = {this.addChild}></Header>
+                    {/*<List todos={this.state.todos}></List>*/}
+                    <List todos={todos}></List>
                     <Footer></Footer>
                 </div>
             </div>
