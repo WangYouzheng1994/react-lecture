@@ -63,6 +63,7 @@ class App extends React.Component {
      * @param todoObj
      */
     updateChild = (id, done) => {
+        // 获取现有集合
         const {todos} = this.state;
         const newTodos = todos.map((obj) => {
             // id 匹配了以后就替换
@@ -78,6 +79,20 @@ class App extends React.Component {
         this.setState({todos: newTodos})
     }
 
+    /**
+     * 删除内容
+     */
+    deleteChild = (id) => {
+        // 获取现有集合
+        const {todos} = this.state;
+
+        const newTodos = todos.filter((todoObj) => {
+            return todoObj.id !== id
+        });
+        // 更新状态
+        this.setState({todos: newTodos})
+    }
+
     render() {
         const {todos} = this.state;
         return (
@@ -86,7 +101,7 @@ class App extends React.Component {
                     {/*<Header addChild={123}></Header> 测试propTypes校验*/}
                     <Header addChild={this.addChild}></Header>
                     {/*<List todos={this.state.todos}></List>*/}
-                    <List todos={todos} updateTodo={this.updateChild}></List>
+                    <List todos={todos} updateTodo={this.updateChild} deleteTodo={this.deleteChild}></List>
                     <Footer></Footer>
                 </div>
             </div>
