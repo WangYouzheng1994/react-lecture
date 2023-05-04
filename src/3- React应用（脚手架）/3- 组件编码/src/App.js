@@ -53,17 +53,30 @@ class App extends React.Component {
         // 追加todo生成新的数组
         const newTodos = [todoObj, ...todos]
         // 变更值~
-        this.setState({todos:newTodos});
+        this.setState({todos: newTodos});
     }
 
     /**
      * 更新一个todo
+     * 根据id更新，done
      *
      * @param todoObj
      */
-    updateChild = (todoObj) => {
+    updateChild = (id, done) => {
+        debugger;
         const {todos} = this.state;
-
+        const newTodos = todos.map((obj) => {
+            // id 匹配了以后就替换
+            if (obj.id === id) {
+                // 复制一个新的obj，并且替换done
+                // return {...obj, done: done}
+                return {...obj, done}
+            } else {
+                // 什么也不改
+                return obj
+            }
+        });
+        this.setState({todos: newTodos})
     }
 
     render() {
@@ -71,9 +84,9 @@ class App extends React.Component {
         return (
             <div className="todo-container">
                 <div className="todo-wrap">
-                    <Header addChild = {this.addChild}></Header>
+                    <Header addChild={this.addChild}></Header>
                     {/*<List todos={this.state.todos}></List>*/}
-                    <List todos={todos}></List>
+                    <List todos={todos} updateTodo={this.updateChild}></List>
                     <Footer></Footer>
                 </div>
             </div>

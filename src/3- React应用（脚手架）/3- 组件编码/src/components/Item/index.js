@@ -20,8 +20,10 @@ class Index extends Component {
     /**
      * 勾选的回调
      */
-    handleCheck = () => {
-
+    handleCheck = (id) => {
+        return (event) => {
+            this.props.updateTodo(id, event.target.checked);
+        }
     }
 
     render() {
@@ -32,7 +34,7 @@ class Index extends Component {
             <li style={{backgroundColor: mouse ? '#ddd' : 'white'}} onMouseEnter={this.handleMouseover(true)}
                 onMouseLeave={this.handleMouseover(false)}>
                 <label>
-                    <input type="checkbox" defaultChecked={done} onChange={this.handleCheck}/>
+                    <input type="checkbox" defaultChecked={done} onChange={this.handleCheck(id)}/>
                     <span>{name}</span>
                 </label>
                 <button className="btn btn-danger" style={{display: mouse ? 'block' : 'none'}}> 删除</button>
