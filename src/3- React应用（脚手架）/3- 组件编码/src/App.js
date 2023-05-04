@@ -63,7 +63,6 @@ class App extends React.Component {
      * @param todoObj
      */
     updateChild = (id, done) => {
-        debugger;
         const {todos} = this.state;
         const newTodos = todos.map((obj) => {
             // id 匹配了以后就替换
@@ -84,6 +83,7 @@ class App extends React.Component {
         return (
             <div className="todo-container">
                 <div className="todo-wrap">
+                    {/*<Header addChild={123}></Header> 测试propTypes校验*/}
                     <Header addChild={this.addChild}></Header>
                     {/*<List todos={this.state.todos}></List>*/}
                     <List todos={todos} updateTodo={this.updateChild}></List>

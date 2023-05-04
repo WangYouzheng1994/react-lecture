@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Item from '../Item'
 import './index.css'
 
 class Index extends Component {
+    static propTypes = {
+        // todos、updateTodo是从app.js 调用的外部传入的props参数
+        todos: PropTypes.array.isRequired,
+        updateTodo: PropTypes.func.isRequired
+    }
 
     render() {
         const {todos, updateTodo} = this.props;

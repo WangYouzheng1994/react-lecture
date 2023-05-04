@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {nanoid} from 'nanoid'
 import './index.css'
 
 class Index extends Component {
+    static propTypes = {
+        // addChild是从app.js 调用的外部传入的props
+        addChild: PropTypes.func.isRequired
+    }
+
     render() {
         return (
             <div className="todo-header">
