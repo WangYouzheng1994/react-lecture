@@ -26,6 +26,7 @@ class Index extends Component {
                 // 使用uuid作为id，安装nano id pnpm i nanoid
                 const todoObj = {id: nanoid(), name: target.value, done: false}
                 this.props.addChild(todoObj);
+                target.value = null;
             } else {
                 alert('请输入内容，不得为空！');
             }

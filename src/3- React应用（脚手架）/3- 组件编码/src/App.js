@@ -93,6 +93,35 @@ class App extends React.Component {
         this.setState({todos: newTodos})
     }
 
+    /**
+     * 设置全选打钩
+     * @param done
+     */
+    checkAllTodo = (done) => {
+        const {todos} = this.state;
+
+        const newTodos = todos.map((todoObj) => {
+            return {...todoObj, done}
+        });
+
+        this.setState({todos: newTodos});
+    }
+
+    /**
+     * 清除所有已经完成的
+     */
+    clearAllDone = () => {
+        // 获取原来的todos
+        const {todos} = this.state;
+
+        // 过滤数据，保留未完成的 就是除去已完成的
+        const newTodos = todos.filter((todoObj) => {
+            return !todoObj.done;
+        });
+        // 更新todos
+        this.setState({todos: newTodos});
+    }
+
     render() {
         const {todos} = this.state;
         return (
@@ -102,7 +131,7 @@ class App extends React.Component {
                     <Header addChild={this.addChild}></Header>
                     {/*<List todos={this.state.todos}></List>*/}
                     <List todos={todos} updateTodo={this.updateChild} deleteTodo={this.deleteChild}></List>
-                    <Footer></Footer>
+                    <Footer todos={todos} checkAllTodo={this.checkAllTodo} clearAllDone={this.clearAllDone}></Footer>
                 </div>
             </div>
         )

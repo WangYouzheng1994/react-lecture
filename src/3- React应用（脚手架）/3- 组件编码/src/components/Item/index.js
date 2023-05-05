@@ -43,7 +43,8 @@ class Index extends Component {
             <li style={{backgroundColor: mouse ? '#ddd' : 'white'}} onMouseEnter={this.handleMouseover(true)}
                 onMouseLeave={this.handleMouseover(false)}>
                 <label>
-                    <input type="checkbox" defaultChecked={done} onChange={this.handleCheck(id)}/>
+                    {/*defaultChecked={done}*/}
+                    <input type="checkbox"  checked={done} onChange={this.handleCheck(id)}/>
                     <span>{name}</span>
                 </label>
                 <button className="btn btn-danger" onClick={() => {this.handleDelete(id)}} style={{display: mouse ? 'block' : 'none'}}> 删除</button>
