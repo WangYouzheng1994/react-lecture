@@ -3,8 +3,9 @@ import axios from 'axios'
 
 export default class App extends Component {
     getDatalist = () => {
-        // axios.get('http://localhost:8080/boot3-system/demo/list').then( // 在package.json中配置的话，ip继续写当前前端工程的ip
-        axios.get('http://localhost:3000/boot3-system/demo/list').then(
+        axios.get('http://localhost:3000/api/boot3-system/demo/list').then(
+        // 在package.json中配置的话，ip继续写当前前端工程的ip，当前端工程的public找不到对应的请求，才会打给proxy的配置
+        // axios.get('http://localhost:3000/boot3-system/demo/list').then(
             response => {
                 console.log('getdatalist', response)
             },
@@ -16,8 +17,8 @@ export default class App extends Component {
 
     getData = () => {
         console.log('123')
-        // axios.get('http://localhost:8080/boot3-system/demo/info').then(
-        axios.get('http://localhost:3000/boot3-system/demo/info').then(
+        axios.get('http://localhost:3000/api/boot3-system/demo/info').then(
+        // axios.get('http://localhost:3000/boot3-system/demo/info').then(
             response => {
                 console.log('getDataInfo', response)
             },
