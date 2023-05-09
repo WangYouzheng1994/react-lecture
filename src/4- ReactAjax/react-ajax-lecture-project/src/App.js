@@ -1,22 +1,37 @@
+import React, {Component} from 'react'
+import axios from 'axios'
 
-
-function App() {
-
-    this.getData = () => {
-        alert(1);
+export default class App extends Component {
+    getDatalist = () => {
+        // axios.get('http://localhost:8080/boot3-system/demo/list').then( // 在package.json中配置的话，ip继续写当前前端工程的ip
+        axios.get('http://localhost:3000/boot3-system/demo/list').then(
+            response => {
+                console.log('getdatalist', response)
+            },
+            error => {
+                console.log('有点问题')
+            }
+        )
     }
 
-    this.getData2 = () => {
-        alert(2);
-
+    getData = () => {
+        console.log('123')
+        // axios.get('http://localhost:8080/boot3-system/demo/info').then(
+        axios.get('http://localhost:3000/boot3-system/demo/info').then(
+            response => {
+                console.log('getDataInfo', response)
+            },
+            error => {
+                console.log('有点问题')
+            }
+        )
     }
-    return (
-        <div className="App">
+
+    render() {
+        return <div className="App">
             1233213213213221
-            {/*<button onClick={this.getData}>获取数据list</button>
-            <button onClick={this.getData2}>获取数据one</button>*/}
+            <button onClick={this.getDatalist}>获取数据list</button>
+            <button onClick={this.getData}>获取数据one</button>
         </div>
-    );
+    }
 }
-
-export default App;
