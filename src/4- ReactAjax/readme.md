@@ -1,3 +1,9 @@
+### 目录
+1. react-ajax-lecture-project
+* 配置两种代理，以及axios简单demo
+2. github_demo_test
+* 完成静态页面的编制，组件合并，事件绑定发请求
+
 ### Axios
 
 ```
