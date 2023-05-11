@@ -30,7 +30,8 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Header updateAppState={this.updateAppState} saveUsers = {this.saveUsers}></Header>
-                <List users={this.state.users} isLoading={this.state.isLoading}></List>
+                {/*<List users={this.state.users} isLoading={this.state.isLoading}></List>*/}
+                <List {...this.state}></List>
             </div>
         )
     }
