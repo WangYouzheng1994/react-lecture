@@ -6,7 +6,7 @@ import List from './components/List'
 
 
 class App extends React.Component {
-    state = {users:[], isFirst: true, isLoading: false}
+    state = {users:[], isFirst: true, isLoading: false, errorMsg: ""}
 
     /**
      * 保存用户列表
