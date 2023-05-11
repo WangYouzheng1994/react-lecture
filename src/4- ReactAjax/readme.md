@@ -3,6 +3,8 @@
 * 配置两种代理，以及axios简单demo
 2. github_demo_test
 * 完成静态页面的编制，组件合并，事件绑定发请求
+3. github_demo_test_pubsub
+* Pubsub发布订阅下的数据传递
 
 ### Axios
 
@@ -79,4 +81,12 @@ https://blog.csdn.net/qq_42543244/article/details/125371238
 ### eslint conflict 冲突问题
 ```
 pnpm add eslint-config-react-app
+```
+
+### 使用发布订阅技术进行数据的通信
+* 使用发布订阅技术进行数据通信可以解决App.jsx过重的问题
+* 可以进行兄弟间直接的数据传递
+* 常见的是使用pubsub
+```
+pnpm add pubsub
 ```
