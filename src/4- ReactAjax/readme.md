@@ -65,3 +65,18 @@ module.exports = function (app) {
 
 可参考：
 https://blog.csdn.net/qq_42543244/article/details/125371238
+---
+
+### 静态转React组件
+1. 在public/index.html中，引入在线的bootstrap.css样式，因为现在还没用bootstrap.js
+```
+<!-- 引入css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+```
+2. 如果不想用在线的bootstrap.css样式，那么需要在public下新建css文件夹，然后拷贝进入该文件夹
+
+
+### eslint conflict 冲突问题
+```
+pnpm add eslint-config-react-app
+```
