@@ -15,7 +15,13 @@ class Index extends Component {
         // alert(value);
         // 连续解构赋值的 重命名，比如我不想让他用value 要改个名字为inputVal
         const {keyWordElement: {value: inputVal}}= this;
-        alert(inputVal);
+
+        // 为什么这里不跨域？因为GIthub的后端服务器使用了CORS解决了跨域问题
+        axios.get(`https://api.github.com/search/users?q=${inputVal}`).then(resp => {
+            console.log("成功了", resp.data);
+        }, error => {
+            console.error("异常了", error)
+        })
     }
 
     render() {
