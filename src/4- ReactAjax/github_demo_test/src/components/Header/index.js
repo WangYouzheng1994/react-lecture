@@ -19,6 +19,8 @@ class Index extends Component {
         // 为什么这里不跨域？因为GIthub的后端服务器使用了CORS解决了跨域问题
         axios.get(`https://api.github.com/search/users?q=${inputVal}`).then(resp => {
             console.log("成功了", resp.data);
+            this.props.saveUsers(resp.data.items);
+
         }, error => {
             console.error("异常了", error)
         })
