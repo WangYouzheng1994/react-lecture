@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class Index extends Component {
+class Header extends Component {
 
     /**
      * 查询按钮事件
@@ -42,4 +42,4 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default Header;
