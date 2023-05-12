@@ -12,7 +12,7 @@ class List extends Component {
     }
 
     componentWillUnmount() {
-        // PubSub.unsubscribe(this.token);
+        PubSub.unsubscribe(this.token);
     }
 
     render() {

@@ -6,7 +6,7 @@
 3. github_demo_test_pubsub
 * Pubsub发布订阅下的数据传递
 
-### Axios
+### 使用Axios发送请求
 
 ```
 pnpm add axios 安装
@@ -69,7 +69,7 @@ module.exports = function (app) {
 https://blog.csdn.net/qq_42543244/article/details/125371238
 ---
 
-### 静态转React组件
+### 静态bootstrap页面转React组件
 1. 在public/index.html中，引入在线的bootstrap.css样式，因为现在还没用bootstrap.js
 ```
 <!-- 引入css -->
@@ -83,11 +83,57 @@ https://blog.csdn.net/qq_42543244/article/details/125371238
 pnpm add eslint-config-react-app
 ```
 
-### 使用发布订阅技术进行数据的通信
+### 使用pubsubjs发布订阅技术进行数据的通信
 * 使用发布订阅技术进行数据通信可以解决App.jsx过重的问题
 * 可以进行兄弟间直接的数据传递
 * 常见的是使用pubsubjs： https://github.com/mroderick/PubSubJS
 ```
 pnpm install pubsub-js
 ```
+1. 发布订阅
+```
+import PubSub from 'pubsub-js';
 
+PubSub.publish("UpdateList", {isFirst: false, isLoading: true})
+```
+
+3. 订阅主题，消费消息
+```js
+
+import PubSub from 'pubsub-js';
+
+class List extends Component {
+    state = {users: [], isFirst: true, isLoading: false, errorMsg: ""}
+
+    /**
+     * 订阅消费
+     */
+    componentDidMount() {
+        // 频道/主题， 事件回调
+        this.token = PubSub.subscribe('UpdateList', (_, stateObj) => {
+            this.setState(stateObj);
+        })
+    }
+
+    /**
+     * 取消订阅
+     */
+    componentWillUnmount() {
+        PubSub.unsubscribe(this.token);
+    }
+}
+
+```
+---
+
+### 使用Fetch进行网络请求
+1. 无需单独安装依赖包
+2. 使用代码
+- 原始版
+```
+
+
+```
+- 优化版
+
+- 非回调版
