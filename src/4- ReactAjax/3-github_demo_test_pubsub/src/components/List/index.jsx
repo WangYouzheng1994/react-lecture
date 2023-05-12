@@ -1,9 +1,22 @@
 import React, {Component} from 'react';
+import PubSub from 'pubsub-js';
 
 class List extends Component {
+    state = {users:[], isFirst: true, isLoading: false, errorMsg: ""}
+
+    componentDidMount() {
+        // 频道/主题， 事件回调
+        this.token = PubSub.subscribe('UpdateList', (_, stateObj) => {
+            this.setState(stateObj);
+        })
+    }
+
+    componentWillUnmount() {
+        // PubSub.unsubscribe(this.token);
+    }
 
     render() {
-        const {isLoading, isFirst, errorMsg} = this.props;
+        const {isLoading, isFirst, errorMsg} = this.state;
 
 
         return (
@@ -12,7 +25,7 @@ class List extends Component {
                     isFirst ? <h4>欢迎使用，请输入关键字</h4> :
                     isLoading ? <h2>加载中...</h2> :
                     errorMsg ? <h3 style={{color:'red'}}>{errorMsg}</h3> :
-                    this.props.users.map((user, index) => {
+                    this.state.users.map((user, index) => {
                         return (
                             <div className="card text-center ">
                                 <a className="card-link " href={user.html_url}>

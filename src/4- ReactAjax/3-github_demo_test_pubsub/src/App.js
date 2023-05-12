@@ -6,7 +6,7 @@ import List from './components/List'
 
 
 class App extends React.Component {
-    state = {users:[], isFirst: true, isLoading: false, errorMsg: ""}
+    // state = {users:[], isFirst: true, isLoading: false, errorMsg: ""}
 
     /**
      * 保存用户列表
@@ -29,9 +29,9 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <Header updateAppState={this.updateAppState} saveUsers = {this.saveUsers}></Header>
+                <Header></Header>
                 {/*<List users={this.state.users} isLoading={this.state.isLoading}></List>*/}
-                <List {...this.state}></List>
+                <List></List>
             </div>
         )
     }

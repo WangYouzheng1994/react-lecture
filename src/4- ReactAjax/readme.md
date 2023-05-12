@@ -86,7 +86,8 @@ pnpm add eslint-config-react-app
 ### 使用发布订阅技术进行数据的通信
 * 使用发布订阅技术进行数据通信可以解决App.jsx过重的问题
 * 可以进行兄弟间直接的数据传递
-* 常见的是使用pubsub
+* 常见的是使用pubsubjs： https://github.com/mroderick/PubSubJS
 ```
-pnpm add pubsub
+pnpm install pubsub-js
 ```
+

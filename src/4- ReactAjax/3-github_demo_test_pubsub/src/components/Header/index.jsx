@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import PubSub from 'pubsub-js';
+
 
 class Header extends Component {
 
@@ -17,16 +19,19 @@ class Header extends Component {
         // const {updateAppState} = this.props;
         const {keyWordElement: {value: inputVal}, props: {updateAppState}}= this;
 
-
-        updateAppState({isFirst: false, isLoading: true});
+        // updateAppState({isFirst: false, isLoading: true});
+        PubSub.publish("UpdateList", {isFirst: false, isLoading: true})
         // 为什么这里不跨域？因为GIthub的后端服务器使用了CORS解决了跨域问题
         axios.get(`https://api.github.com/search/users?q=${inputVal}`).then(resp => {
-            updateAppState({isLoading: false});
+            // updateAppState({isLoading: false});
+            PubSub.publish("UpdateList", {isLoading: false})
             console.log("成功了", resp.data);
-            this.props.saveUsers(resp.data.items);
+            // this.props.saveUsers(resp.data.items);
+            PubSub.publish("UpdateList", {users: resp.data.items})
 
         }, error => {
-            updateAppState({isLoading: false, errorMsg: error.message});
+            // updateAppState({isLoading: false, errorMsg: error.message});
+            PubSub.publish("UpdateList", {isLoading: false, errorMsg: error.message})
             console.error("异常了", error)
         })
     }
