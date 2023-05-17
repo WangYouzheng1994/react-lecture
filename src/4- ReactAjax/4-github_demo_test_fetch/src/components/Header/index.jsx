@@ -8,7 +8,7 @@ class Header extends Component {
     /**
      * 查询按钮事件
      */
-    search = () => {
+    search = async () => {
         // console.log(this.keyWordElement.value);
         // 常规解构赋值
         // const {value} = this.keyWordElement;
@@ -22,7 +22,7 @@ class Header extends Component {
         // updateAppState({isFirst: false, isLoading: true});
         PubSub.publish("UpdateList", {isFirst: false, isLoading: true})
         // 为什么这里不跨域？因为GIthub的后端服务器使用了CORS解决了跨域问题
-        axios.get(`https://api.github.com/search/users?q=${inputVal}`).then(resp => {
+        /*axios.get(`https://api.github.com/search/users?q=${inputVal}`).then(resp => {
             // updateAppState({isLoading: false});
             PubSub.publish("UpdateList", {isLoading: false})
             console.log("成功了", resp.data);
@@ -33,7 +33,20 @@ class Header extends Component {
             // updateAppState({isLoading: false, errorMsg: error.message});
             PubSub.publish("UpdateList", {isLoading: false, errorMsg: error.message})
             console.error("异常了", error)
-        })
+        })*/
+
+        // Fetch进行请求的发送，具体的每个版本查看readme.md文档
+        PubSub.publish("UpdateList", {isLoading: true})
+        try {
+            const response = await fetch(`https://api.github.com/search/users?q=${inputVal}`);
+            const data = await response.json(); // await右边一定要promise
+            PubSub.publish("UpdateList", {isLoading: false,users: data.items})
+        } catch (error) {
+            PubSub.publish("UpdateList", {isLoading: false, errorMsg: error.message})
+            console.log("请求出错", error)
+        }
+
+
     }
 
     render() {

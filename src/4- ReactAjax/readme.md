@@ -5,6 +5,8 @@
 * 完成静态页面的编制，组件合并，事件绑定发请求
 3. github_demo_test_pubsub
 * Pubsub发布订阅下的数据传递
+4. github_demo_test_fetch
+* 使用fetch的方式发送请求 
 
 ### 使用Axios发送请求
 
@@ -130,10 +132,68 @@ class List extends Component {
 1. 无需单独安装依赖包
 2. 使用代码
 - 原始版
+```js
+fetch().then(
+    // 服务器有响应
+    response => {
+        console.log("连接服务器成功了")
+        return response.json(); // 注意这是个方法，把服务器返回值转换成JSON的一个Promise
+    },
+    // HTTP请求有问题
+    error => {
+        console.log("连接服务器失败！")
+        // 这里要加上中断Promise链的语句，即：pending状态的Promise对象，就不会执行下面的Then了
+        return new Promise(() => {})
+    }
+).then(
+    // 这里的意思是响应回来了，但是数据(response.json())是有问题的
+    response => {console.log("获取数据成功了", response)},
+    error => {console.log("获取数据失败了", error)}
+)
 ```
+> 以上代码有优化空间，对于fetch的Promise回调来说，管他是HTTP报错还是JSON数据解析的报错，都是error
 
-
-```
 - 优化版
+```js
 
-- 非回调版
+fetch().then(
+    // 服务器有响应
+    response => {
+        console.log("连接服务器成功了")
+        return response.json(); // 注意这是个方法，把服务器返回值转换成JSON的一个Promise
+    },
+    // HTTP请求有问题
+ /*   error => {
+        console.log("连接服务器失败！")
+        // 这里要加上中断Promise链的语句，即：pending状态的Promise对象，就不会执行下面的Then了
+        return new Promise(() => {})
+    }*/
+).then(
+    // 这里的意思是响应回来了，但是数据(response.json())是有问题的
+    response => {console.log("获取数据成功了", response)},
+    // error => {console.log("获取数据失败了", error)}
+).catch((error) => {console.log(error)})
+
+
+```
+
+
+- 非回调版，使用await优化
+```
+// 必须是async的才可以await
+search = async () => {
+    try {
+        const response = await fetch("");
+        const data = await response.json(); // await右边一定要promise
+    } catch (error) {
+        console.log("请求出错", error)
+    }
+}
+
+
+```
+
+
+3. 特点
+* 原生函数，但是不是使用XmlHTtpRequest来进行AJAX请求
+* 老版本浏览器支持度低
