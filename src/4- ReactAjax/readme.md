@@ -1,4 +1,4 @@
-### 目录
+### ReactAjax目录
 1. react-ajax-lecture-project
 * 配置两种代理，以及axios简单demo
 2. github_demo_test
@@ -197,3 +197,10 @@ search = async () => {
 3. 特点
 * 原生函数，但是不是使用XmlHTtpRequest来进行AJAX请求
 * 老版本浏览器支持度低
+
+
+
+#### 总结
+* ES6复习： 解构赋值
+* 消息发布订阅通信，要在componentWillUnmount取消订阅
+* fetch
