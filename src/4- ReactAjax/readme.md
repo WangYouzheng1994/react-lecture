@@ -126,6 +126,7 @@ class List extends Component {
 }
 
 ```
+
 ---
 
 ### 使用Fetch进行网络请求
@@ -177,7 +178,6 @@ fetch().then(
 
 ```
 
-
 - 非回调版，使用await优化
 ```
 // 必须是async的才可以await
@@ -189,16 +189,11 @@ search = async () => {
         console.log("请求出错", error)
     }
 }
-
-
 ```
 
-
 3. 特点
-* 原生函数，但是不是使用XmlHTtpRequest来进行AJAX请求
+* 原生函数，但是不是使用XmlHttpRequest来进行AJAX请求
 * 老版本浏览器支持度低
-
-
 
 #### 总结
 * ES6复习： 解构赋值
