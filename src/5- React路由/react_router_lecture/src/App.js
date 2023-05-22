@@ -14,8 +14,8 @@ class App extends React.Component {
           <div className="row ">
             <div className="col-md-2">
               <ul className="list-group">
-                <li className="list-group-item active" aria-current="true"><a href="base_static_about.html">about</a>
-                </li>
+                {/* 原生的页面是通过a标签的url进行跳转的，他不是一种局部的刷新 */}
+                <li className="list-group-item active" aria-current="true"><a href="base_static_about.html">about</a></li>
                 <li className="list-group-item"><a href="base_static_home.html">home</a></li>
                 <li className="list-group-item">A third item</li>
                 <li className="list-group-item">A fourth item</li>
