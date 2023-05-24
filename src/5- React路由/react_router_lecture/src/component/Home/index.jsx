@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
-import PubSub from 'pubsub-js';
 
 class Home extends Component {
     render() {
+        return (
+            <div>
+                home componentfdsafdsadfsa
 
+            </div>
+
+        )
     }
 }
+
+export default Home;

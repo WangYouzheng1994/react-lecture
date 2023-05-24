@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
-import PubSub from 'pubsub-js';
 
 class About extends Component {
-
+    render() {
+        return (
+            <div>
+                about component
+            </div>
+        )
+    }
 }
+
+export default About;
