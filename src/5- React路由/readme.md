@@ -8,11 +8,10 @@
 ### 使用React Router进行SPA的局部刷新跳转
 * SPA是基于BOM History栈来的。
 * 常见的是使用官方的React-Router-Dom
-```js
-pnpm install react-router-dom
-
 ```
-
+pnpm install react-router-dom
+```
+* 通过比对html源码 发现切换其实就是一种动态的切换dom节点。 他的效果其实和传统的iframe还是有区别的。但是看起来很像而已~
 
 ### 路由有两种模式
 1. 浏览器历史模式 BrowserRouter
