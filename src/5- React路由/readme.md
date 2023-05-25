@@ -126,3 +126,23 @@ const {name, age} = this.props.match.params;
 ```
 
 - state参数 复杂参数
+```
+
+```
+
+### React的路由模式
+* push 默认模式
+* replace 模式，不会留下痕迹，没有前进和后退~~ 因为不压栈啊，直接变更了。history中只有一条~
+
+### 编程式路由
+* 没有link，不需要点击触发的。
+
+- replace
+1. params
+2. search
+3. state
+
+- push
+1. params
+2. search
+3. state
