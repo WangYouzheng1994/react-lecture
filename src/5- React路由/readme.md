@@ -107,3 +107,22 @@ pnpm install react-router-dom
 ```
 <Redirect to="">
 ```
+
+### ReactRouter传参
+- params参数 简单参数
+```
+// 携带参数
+<Link to='/a/b/Tom/18'></Link>
+// 路由器注册声明
+<Route path='/a/b/c/:name/:age' element={<User/>}>
+// 接收参数
+User中使用Props接收
+const {name, age} = this.props.match.params;
+```
+
+- search参数 简单参数，不用声明接收~
+```
+
+```
+
+- state参数 复杂参数
