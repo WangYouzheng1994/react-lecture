@@ -40,4 +40,21 @@ pnpm install react-router-dom
 </BrowserRouter>
 ```
 
-2. hash模式
+2. hash模式 HashRouter
+* url会有一个#号，并且井号后面的数据不会传递给后台（约定，锚点，hash前端资源）
+* 不会有历史记录
+- router6.x的使用方式
+```
+<BrowserRouter>
+    <Link className="list-group-item" to="/about">About</Link>
+    <Link className="list-group-item" to="/home">Home</Link>
+    <Routes>
+        <Route path="/about" element={<About/>}></Route>
+        <Route path="/home" element={<Home/>}></Route>
+    </Routes>
+</BrowserRouter>
+```
+
+3. 总结
+* Router不可以嵌套
+* 应该考虑把browserRouter和hashRouter直接放到 index.js 包裹<App/>
