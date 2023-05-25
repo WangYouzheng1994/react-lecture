@@ -58,3 +58,4 @@ pnpm install react-router-dom
 3. 总结
 * Router不可以嵌套
 * 应该考虑把browserRouter和hashRouter直接放到 index.js 包裹<App/>
+* Link 会被渲染成 a标签html
