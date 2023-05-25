@@ -59,3 +59,7 @@ pnpm install react-router-dom
 * Router不可以嵌套
 * 应该考虑把browserRouter和hashRouter直接放到 index.js 包裹<App/>
 * Link 会被渲染成 a标签html
+
+### 标签体内容
+1. 标签体内容其实是作为children属性传递给了props，
+因此对于自定义重构标签需要标签体的内容的时候，可以直接获取children属性即可，详情参考MyNavLInk
