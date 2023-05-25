@@ -63,3 +63,34 @@ pnpm install react-router-dom
 ### 标签体内容
 1. 标签体内容其实是作为children属性传递给了props，
 因此对于自定义重构标签需要标签体的内容的时候，可以直接获取children属性即可，详情参考MyNavLInk
+
+
+### switch标签
+- 当link跳转后，会对routes中的route进行匹配，如果我们出现了一个link的to匹配到了多个route的path，那么就会从头匹配到底部。
+使用switch 包裹，出现第一个匹配到的route就终止匹配
+
+* 6.0 写法，包裹到Routes外部。 5.0写法直接包裹Route
+```
+<switch>
+  <Routes>
+
+    {/*5.x写法*/}
+    {/*<Route path="/about" component={About}></Route>
+                      <Route path="/home" component={Home}></Route>*/}
+    {/* 6.x   */}
+    <Route path="/about" element={<About abc={"abc"}/>}></Route>
+    <Route path="/home" element={<Home/>}></Route>
+
+  </Routes>
+</switch>
+```
+### 样式的丢失问题
+场景；当history路由进行过跳转，修改了url。然后进行页面刷新，这个时候样式丢失。
+通过分析 network资源的加载，发现css的路径请求有问题。
+原因：css引入使用了./这种相对路径，正常的web应用应该和jsp一样，需要用根路径来进行渲染的。
+
+- 解决方案1： 使用hashrouter，即使跳转，因为url的# 那么再次刷新给css的时候不会发生跳转.
+- 解决方案2： 使用/根路径，这个根路径就是public目录
+- 解决方案3： 使用 %PUBLIC_URL% 变量，他其实和javaweb的webroot道理一样，用的是网站根路径~
+
+### 路由的模糊和精准匹配
