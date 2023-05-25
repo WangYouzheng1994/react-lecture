@@ -94,3 +94,16 @@ pnpm install react-router-dom
 - 解决方案3： 使用 %PUBLIC_URL% 变量，他其实和javaweb的webroot道理一样，用的是网站根路径~
 
 ### 路由的模糊和精准匹配
+* 默认都是模糊匹配，使用exact属性即开启严格匹配，即：
+```
+<Link to="/abc/a">1</Link>
+<Route path="/abc" />能匹配上
+<Route exact path="/abc" />不能匹配上
+<Route exact={true} path="/abc" />不能匹配上
+```
+
+### Redirect重定向到默认路由
+* 使用Redirect解决Link要跳转的路径没有任何匹配的时候，再重定向一个Route地址
+```
+<Redirect to="">
+```
