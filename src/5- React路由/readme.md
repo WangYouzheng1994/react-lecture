@@ -69,9 +69,20 @@ pnpm install react-router-dom
 - 当link跳转后，会对routes中的route进行匹配，如果我们出现了一个link的to匹配到了多个route的path，那么就会从头匹配到底部。
 使用switch 包裹，出现第一个匹配到的route就终止匹配
 
-* 6.0 写法，包裹到Routes外部。 5.0写法直接包裹Route
+* 5.0写法，包裹到Route外部
 ```
-<switch>
+<BrowserRouter>
+    <Link className="list-group-item" to="/about">About</Link>
+    <Link className="list-group-item" to="/home">Home</Link>
+    <Switch>
+        <Route path="/about" component={About}></Route>
+        <Route path="/home" component={Home}></Route>
+    </Switch>
+</BrowserRouter>
+```
+
+* 6.0 写法： 6.x 已经取消Switch了哈~包裹到Routes外部。 5.0写法直接包裹Route
+```
   <Routes>
 
     {/*5.x写法*/}
@@ -82,7 +93,6 @@ pnpm install react-router-dom
     <Route path="/home" element={<Home/>}></Route>
 
   </Routes>
-</switch>
 ```
 ### 样式的丢失问题
 场景；当history路由进行过跳转，修改了url。然后进行页面刷新，这个时候样式丢失。
