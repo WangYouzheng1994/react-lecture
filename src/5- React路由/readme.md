@@ -146,20 +146,48 @@ pnpm install react-router-dom
     {/*<Route path="*" element={<Home/>}></Route>*/}
     {/* react-router-dom v6的实现方式2 */}
     <Route path="*" element={<Navigate to="/about" />}/>
+{/*  注意 这里的Navigate to 等价于 Link to，二级路由的默认匹配要注意一下  */}
 </Routes>
 ```
 
 ### Router5.x 嵌套路由
+* v5:需要写父级路由，如/home/news
 ```jsx
+// 二级页面如下：
+<Link to="/home/news"></Link>
+<Link to="/home/message"></Link>
 
+<Switch>
+    <Route path="/home/news" component={News}></Route>
+    <Route path="/home/message" component={Message}></Route>
+</Switch>
 
+// 切记，v5 默认是模糊匹配，如果要实现二级嵌套路由，不要开启exact精准模式
 ```
 ### Router6.x 嵌套路由
+* v6:不写父级路由，如news
 ```jsx
+// 二级页面如下：
+<NavLink className="nav-link" to="/home/news">News</NavLink>
+<NavLink className="nav-link" to="/home/message">Message</NavLink>
 
-
+<Routes>
+    <Route path="/news" element={<News abc={"abc"}/>}></Route>
+    <Route path="/message" element={<Message abc={"abc"}/>}></Route>
+    <Route path="*" element={<Navigate to="/home/news" />}/>
+</Routes>
 ```
+> 嵌套路由分析，当外层注册的时候，无论是v5还是v6必须设为模糊匹配，假设点击的链接是/home/news，  
+> 那么会先匹配到父级的/home，随后，匹配到了二级页面中的<Routes>中的对应的news，  
+> v5和v6的区别是，v6的父路由要用/*开启模糊匹配，并且二级路由中不需要写父路由了，直接写/news；
+> 但是v5需要带着父路由，如/home/news
 
+
+#### 关于React Router 5.x和6.x的重定向与嵌套路由以及精准模糊匹配的总价
+
+https://blog.csdn.net/qq_44850230/article/details/125252546
+
+---
 ### ReactRouter传参
 - params参数 简单参数
 ```

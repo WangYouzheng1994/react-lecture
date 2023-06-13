@@ -27,16 +27,16 @@ class App extends React.Component {
                             {/* 注册路由的 展示区，path对应了link的to，component对应了路由的组件 */}
                             <div className="panel-body">
                                 {/*<Switch>*/}
-                                {/*    <Routes>*/}
+                                    <Routes>
 
                                         {/*5.x写法*/}
                                         {/*<Route path="/about" component={About}></Route>
                                           <Route path="/home" component={Home}></Route>*/}
                                         {/* 6.x   */}
                                         <Route path="/about" element={<About abc={"abc"}/>}></Route>
-                                        <Route path="/home" element={<Home/>}></Route>
+                                        <Route path="/home/*" element={<Home/>}></Route>
 
-                                    {/*</Routes>*/}
+                                    </Routes>
                                 {/*</Switch>*/}
                             </div>
                         </div>

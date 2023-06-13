@@ -5,7 +5,7 @@ class About extends Component {
         console.log(this.props);
         return (
             <div>
-                about component
+                <h2>about component</h2>
             </div>
         )
     }
