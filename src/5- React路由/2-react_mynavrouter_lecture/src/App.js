@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {BrowserRouter, HashRouter, Link, NavLink, Route, Routes} from "react-router-dom";
+import {BrowserRouter, HashRouter, Link, NavLink, Navigate, Route, Routes} from "react-router-dom";
 import About from "./pages/About"
 import Home from "./pages/Home"
 import MyNavLink from "./component/MyNavLink";
@@ -28,12 +28,12 @@ class App extends React.Component {
                   {/*在React中靠路由链接实现切换组件--编写路由的链接，相当于导航*/}
                   <Link className="list-group-item" to="/about">About</Link>
                   {/*NavLInk 在选中的时候 会增加一个active的class，正好和bootstrap迎合了~*/}
-                  <NavLink className="list-group-item" to="/home">Home</NavLink>
+                  <NavLink className="list-group-item" to="/home_nav">home_nav</NavLink>
                   <NavLink activeClassName="aaaaa" className="list-group-item" to="/about">测试Navlink的自定义className, 5.0版本</NavLink>
                   {/*https://reactrouter.com/en/main/components/nav-link  需要提供一个 function*/}
-                  <NavLink className="aaaaa" className="list-group-item" to="/about">测试Navlink的自定义className, 6.0版本</NavLink>
+                  <NavLink className="aaaaa" className="list-group-item" to="/about_nav">测试Navlink的自定义className, 6.0版本</NavLink>
 
-                  <MyNavLink to="/home">哈哈哈哈哈</MyNavLink>
+                  <MyNavLink to="/home_haha">哈哈哈哈哈</MyNavLink>
                 </ul>
               </div>
 
@@ -49,7 +49,10 @@ class App extends React.Component {
                                           <Route path="/home" component={Home}></Route>*/}
                         {/* 6.x   */}
                         <Route path="/about" element={<About abc={"abc"}/>}></Route>
+                        <Route path="/about1" element={<About abc={"abc"}/>}></Route>
                         <Route path="/home" element={<Home/>}></Route>
+                        <Route path="/home_nav" element={<Home/>}></Route>
+                        <Route path="/home_haha" element={<Home/>}></Route>
 
                       </Routes>
                     </switch>
@@ -65,6 +68,8 @@ class App extends React.Component {
                 <ul className="list-group">
                   <Link className="list-group-item" to="/about">About</Link>
                   <Link className="list-group-item" to="/home">Home</Link>
+                  <Link className="list-group-item" to="/home/123">测试模糊匹配到Home</Link>
+                  <Link className="list-group-item" to="/xxxxx">默认去homele</Link>
                 </ul>
               </div>
               <div className="col-md-10">
@@ -75,9 +80,16 @@ class App extends React.Component {
                       {/*5.x写法*/}
                       {/*<Route path="/about" component={About}></Route>
                                         <Route path="/home" component={Home}></Route>*/}
+                      {/*5.x的Redirect的写法*/}
+
                       {/* 6.x   */}
                       <Route path="/about" element={<About/>}></Route>
-                      <Route path="/home" element={<Home/>}></Route>
+                      <Route path="/home/*" ex element={<Home/>}></Route>
+                      {/* react-router-dom v6的实现方式1 */}
+                      {/*<Route path="*" element={<Home/>}></Route>*/}
+                      {/* react-router-dom v6的实现方式2 */}
+                      <Route path="*" element={<Navigate to="/about" />} />
+                      {/*<Redirect className="list-group-item" to="/default">redirect</Redirect>*/}
                     </Routes>
                   </div>
                 </div>

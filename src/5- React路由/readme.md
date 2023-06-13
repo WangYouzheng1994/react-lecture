@@ -19,7 +19,7 @@ pnpm install react-router-dom
 * 会留下历史记录，可以前进和后退
 * url会发生变化 
 - router6.x的使用方式
-```js
+```jsx
 <BrowserRouter>
     <Link className="list-group-item" to="/about">About</Link>
     <Link className="list-group-item" to="/home">Home</Link>
@@ -30,7 +30,7 @@ pnpm install react-router-dom
 </BrowserRouter>
 ```
 - router5.x的使用方式
-```js
+```jsx
 <BrowserRouter>
     <Link className="list-group-item" to="/about">About</Link>
     <Link className="list-group-item" to="/home">Home</Link>
@@ -41,10 +41,10 @@ pnpm install react-router-dom
 ```
 
 2. hash模式 HashRouter
-* url会有一个#号，并且井号后面的数据不会传递给后台（约定，锚点，hash前端资源）
+* url会有一个#号，并且井号后面的数据不会传递给后台（#的约定意义: 锚点，hash前端资源）
 * 不会有历史记录
 - router6.x的使用方式
-```
+```jsx
 <BrowserRouter>
     <Link className="list-group-item" to="/about">About</Link>
     <Link className="list-group-item" to="/home">Home</Link>
@@ -60,6 +60,9 @@ pnpm install react-router-dom
 * 应该考虑把browserRouter和hashRouter直接放到 index.js 包裹<App/>
 * Link 会被渲染成 a标签html
 
+### NavLink和Link
+1. 两者都是用以跳转路由用的
+2. navlink会进行高亮配合activeClassname
 ### 标签体内容
 1. 标签体内容其实是作为children属性传递给了props，
 因此对于自定义重构标签需要标签体的内容的时候，可以直接获取children属性即可，详情参考MyNavLInk
@@ -81,7 +84,7 @@ pnpm install react-router-dom
 </BrowserRouter>
 ```
 
-* 6.0 写法： 6.x 已经取消Switch了哈~包裹到Routes外部。 5.0写法直接包裹Route
+* 6.0 写法： 6.x 已经取消Switch了哈~包裹到Routes外部，自动按照匹配的第一个
 ```
   <Routes>
 
@@ -104,18 +107,57 @@ pnpm install react-router-dom
 - 解决方案3： 使用 %PUBLIC_URL% 变量，他其实和javaweb的webroot道理一样，用的是网站根路径~
 
 ### 路由的模糊和精准匹配
-* 默认都是模糊匹配，使用exact属性即开启严格匹配，即：
-```
+* v5默认都是模糊匹配，使用exact属性即开启严格匹配，即：
+```jsx
 <Link to="/abc/a">1</Link>
-<Route path="/abc" />能匹配上
-<Route exact path="/abc" />不能匹配上
-<Route exact={true} path="/abc" />不能匹配上
+// 能匹配上
+<Route path="/abc" />
+// 不能匹配上
+<Route exact path="/abc" />
+// 不能匹配上
+<Route exact={true} path="/abc" />
 ```
 
-### Redirect重定向到默认路由
+* v6默认是精准匹配
+```jsx
+<Routes>
+    <Route path="/about" element={<About/>}></Route>
+    // 模糊匹配
+    <Route path="/home/*" ex element={<Home/>}></Route>
+</Routes>
+```
+
+### router 5.x Redirect重定向到默认路由
 * 使用Redirect解决Link要跳转的路径没有任何匹配的时候，再重定向一个Route地址
 ```
-<Redirect to="">
+<Switch>
+    <Route path='/about' component={About} />
+    <Route path='/home' component={Home} />
+    <Redirect to='/about' /> {/* 兜底 如果没有匹配的直接跳转到/about */} 
+</Switch>
+————————————————
+版权声明：本文为CSDN博主「纯纯的小白」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_30769437/article/details/128097582
+```
+### router 6.x 取消掉Redirect以后的解决方案
+```jsx
+<Routes>
+    {/* react-router-dom v6的实现方式1 */}
+    {/*<Route path="*" element={<Home/>}></Route>*/}
+    {/* react-router-dom v6的实现方式2 */}
+    <Route path="*" element={<Navigate to="/about" />}/>
+</Routes>
+```
+
+### Router5.x 嵌套路由
+```jsx
+
+
+```
+### Router6.x 嵌套路由
+```jsx
+
+
 ```
 
 ### ReactRouter传参
@@ -143,6 +185,8 @@ const {name, age} = this.props.match.params;
 ### React的路由模式
 * push 默认模式
 * replace 模式，不会留下痕迹，没有前进和后退~~ 因为不压栈啊，直接变更了。history中只有一条~
+
+--- 
 
 ### 编程式路由
 * 没有link，不需要点击触发的。
