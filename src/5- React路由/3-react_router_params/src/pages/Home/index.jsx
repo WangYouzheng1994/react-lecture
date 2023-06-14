@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import News from './News'
 import Message from './Message'
 import {NavLink, Link, Route, Routes, Navigate} from "react-router-dom";
-import About from "../About";
 
 class Home extends Component {
     render() {
@@ -25,8 +24,8 @@ class Home extends Component {
                     {/*<News/>*/}
                     {/*<Message/>*/}
                     <Routes>
-                        <Route path="/news" element={<News abc={"abc"}/>}></Route>
-                        <Route path="/message" element={<Message abc={"abc"}/>}></Route>
+                        <Route path="/news" element={<News/>}></Route>
+                        <Route path="/message/*" element={<Message/>}></Route>
                         <Route path="*" element={<Navigate to="/home/news" />}/>
                     </Routes>
                 </div>

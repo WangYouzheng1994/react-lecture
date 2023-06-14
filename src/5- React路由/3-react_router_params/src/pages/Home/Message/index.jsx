@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import Detail from './Detail'
-import Routes, {Link, Route} from 'react-router-dom'
-import About from "../../../../../2-react_mynavrouter_lecture/src/pages/About";
-
+import {Link, Route, Routes} from 'react-router-dom'
 
 export default class Message extends Component {
     state = {
@@ -32,7 +30,9 @@ export default class Message extends Component {
                             return (
                                 <li key={msgObj.id}>
                                     {/*<a>{msgObj.title}</a>*/}
-                                    <Link to="/home/message/detail">{msgObj.title}</Link>
+                                    {/*<Link to="/home/message/detail">{msgObj.title}</Link>*/}
+                                    {/*params的方式传参*/}
+                                    <Link to={`/home/message/detail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>
                                 </li>
                             );
                         })
@@ -42,7 +42,9 @@ export default class Message extends Component {
                 <hr/>
                 {/*<Detail/>*/}
                 <Routes>
-                    <Route path="/detail" element={<Detail/>}></Route>
+                    {/*<Route path="/detail" element={<Detail/>}></Route>*/}
+                    {/*声明接收params参数*/}
+                    <Route path="/detail/:id/:title" element={<Detail/>}></Route>
                 </Routes>
             </div>
         )
