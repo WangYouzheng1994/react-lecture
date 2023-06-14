@@ -236,22 +236,132 @@ export default function Detail(props) {
 
 
 - search参数 简单参数，不用声明接收~ 就是urlencoded格式
-> 需要安装一个包`pnpm add querystring`
+> 需要安装一个包`pnpm add querystring`，这个包可以实现urlencoded的互转~
 * v5版本：
 ```
+import React, {Component} from "react";
+import qs from 'querystring';
 
+export default class Detail extends Component {
+    render() {
+        /!*console.log(this);
+        console.log("啦啦", this.props);*!/
+        // 接收 search参数
+        const {search} = this.props.location;
+        // 使用qs格式化urlencoded格式的search数据
+        const {id, title} = qs.parse(search.slice(1));
+        const findResult = DetailData.find((detailObj)=>{
+            return detailObj.id === id;
+        });
+        return (
+            <div>
+                <ul>
+                    <li>id: {id}</li>
+                    <li>title: {title}</li>
+                    <li>content: {findResult.content}</li>
+                </ul>
+            </div>
+        );
+    }
+}
 
 ```
-* v6版本：
+* v6版本：使用function组件+hooks
 ```
+import React, {Component} from "react";
+import {useParams, useLocation, useSearchParams} from "react-router-dom";
+import qs from 'querystring';
 
-
+export default function Detail(props) {
+    // const {children} = props;
+    console.log("props", props);
+    console.log("params", useParams());
+    console.log("location", useLocation());
+    // 使用钩子接收search参数，并且配合querystring进行格式化数据
+    console.log("parse", qs.parse((useLocation().search).slice(1)));
+    const {id,title} = qs.parse((useLocation().search).slice(1));
+     // 这种写法相当于把useSerachParams数组的第一个值结构拿出，并改成params
+    // const [params] = useSearchParams();
+    // console.log("useSearchParams", params.get("id")); // 获取search中的id参数
+    const findResult = DetailData.find((detailObj)=>{
+        return detailObj.id === id;
+    });
+    return (
+        <div>
+            <ul>
+                <li>id: {id}</li>
+                <li>title: {title}</li>
+                <li>content: {findResult.content}</li>
+            </ul>
+        </div>
+    );
+}
 ```
 
 - state参数 复杂参数
+* v5版本：
+```jsx
+{/*state的方式V5版本的传参，传递的是一个对象，其中路由地址为pathname*/}
+<Link to={{pathname:`/home/message/detail`, state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link>
+import React, {Component} from "react";
+
+export default class Detail extends Component {
+    render() {
+        // 接收 state参数，使用短路或增加容错，避免缓存清空后页面报错了
+        const {id, title} = this.props.location.state || {};
+
+        // 使用短路或增加容错，避免缓存清空后页面报错了
+        const findResult = DetailData.find((detailObj)=>{
+            return detailObj.id === id;
+        }) || {};
+        return (
+            <div>
+                <ul>
+                    <li>id: {id}</li>
+                    <li>title: {title}</li>
+                    <li>content: {findResult.content}</li>
+                </ul>
+            </div>
+        );
+    }
+}
 ```
+* v6版本： function组件+hooks
+```jsx
+{/*state的方式v6版本的传参，to还是一个纯粹的路由地址，Link组件单独接收state*/}
+<Link to={`/home/message/detail`} state={{id:msgObj.id,title:msgObj.title}}>{msgObj.title}</Link>
+
+import React, {Component} from "react";
+import {useParams, useLocation, useSearchParams} from "react-router-dom";
+export default function Detail(props) {
+    // const {children} = props;
+    console.log("props", props);
+    console.log("params", useParams());
+    console.log("location", useLocation());
+    console.log("location", useSearchParams());
+    // 获取接收state参数
+    const {id, title} = useLocation().state || {};
+    const findResult = DetailData.find((detailObj) => {
+        return detailObj.id === id;
+    }) || {};
+    return (
+        <div>
+            <ul>
+                <li>id: {id}</li>
+                <li>title: {title}</li>
+                <li>content: {findResult.content}</li>
+            </ul>
+        </div>
+    );
+}
 
 ```
+
+- params、search、state三种参数总结
+>  https://www.cnblogs.com/wwp666/p/15977149.html  
+> https://blog.csdn.net/D_ttxd/article/details/123342450
+
+1. params、search可以使用
 
 ### React的路由模式
 * push 默认模式
