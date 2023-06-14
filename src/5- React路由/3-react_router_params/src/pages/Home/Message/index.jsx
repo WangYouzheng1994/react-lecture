@@ -1,14 +1,18 @@
 import React, {Component} from 'react'
 import Detail from './Detail'
+import Routes, {Link, Route} from 'react-router-dom'
+import About from "../../../../../2-react_mynavrouter_lecture/src/pages/About";
+
 
 export default class Message extends Component {
     state = {
         messageArr: [
-            {id:'01', title: '消息1'},
-            {id:'02', title: '消息2'},
-            {id:'03', title: '消息5555'},
+            {id: '01', title: '消息1'},
+            {id: '02', title: '消息2'},
+            {id: '03', title: '消息5555'},
         ]
     }
+
     render() {
         let {messageArr} = this.state;
         return (
@@ -24,10 +28,11 @@ export default class Message extends Component {
                         <li>
                             <a>message003</a>
                         </li>*/
-                        messageArr.map((msgObj)=>{
+                        messageArr.map((msgObj) => {
                             return (
                                 <li key={msgObj.id}>
-                                <a>{msgObj.title}</a>
+                                    {/*<a>{msgObj.title}</a>*/}
+                                    <Link to="/home/message/detail">{msgObj.title}</Link>
                                 </li>
                             );
                         })
@@ -35,7 +40,10 @@ export default class Message extends Component {
                 </ul>
                 {/*切记，如果要写js代码 必须要用花括号括起来 <ul><li>{messageArr.length}</li></ul>*/}
                 <hr/>
-                <Detail/>
+                {/*<Detail/>*/}
+                <Routes>
+                    <Route path="/detail" element={<Detail/>}></Route>
+                </Routes>
             </div>
         )
     }
