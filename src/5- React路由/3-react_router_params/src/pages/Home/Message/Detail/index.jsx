@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {useParams, useLocation} from "react-router-dom";
 
+import qs from 'querystring';
+
 // https://www.cnblogs.com/wwp666/p/15977149.html v6接收参数
 //命名格式xxxWithRouter
 /*function DetailWithRouter(Detail) {
@@ -49,9 +51,12 @@ export default function Detail(props) {
     // const {children} = props;
     console.log("props", props);
     console.log("params", useParams());
-    // console.log("location", useLocation());
+    console.log("location", useLocation());
     // 使用钩子接收params参数
-    const {id, title} = useParams();
+    // const {id, title} = useParams();
+    // 使用钩子接收search参数，并且配合querystring进行格式化数据
+    console.log("parse", qs.parse((useLocation().search).slice(1)));
+    const {id,title} = qs.parse((useLocation().search).slice(1));
     const findResult = DetailData.find((detailObj)=>{
         return detailObj.id === id;
     });

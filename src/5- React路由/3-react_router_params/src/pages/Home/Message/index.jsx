@@ -32,7 +32,9 @@ export default class Message extends Component {
                                     {/*<a>{msgObj.title}</a>*/}
                                     {/*<Link to="/home/message/detail">{msgObj.title}</Link>*/}
                                     {/*params的方式传参*/}
-                                    <Link to={`/home/message/detail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>
+                                    {/*<Link to={`/home/message/detail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>*/}
+                                    {/*search的方式传参*/}
+                                    <Link to={`/home/message/detail?id=${msgObj.id}&title=${msgObj.title}`}>{msgObj.title}</Link>
                                 </li>
                             );
                         })
@@ -44,7 +46,9 @@ export default class Message extends Component {
                 <Routes>
                     {/*<Route path="/detail" element={<Detail/>}></Route>*/}
                     {/*声明接收params参数*/}
-                    <Route path="/detail/:id/:title" element={<Detail/>}></Route>
+                    {/*<Route path="/detail/:id/:title" element={<Detail/>}></Route>*/}
+                    {/*search参数无需声明*/}
+                    <Route path="/detail" element={<Detail/>}></Route>
                 </Routes>
             </div>
         )

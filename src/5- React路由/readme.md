@@ -235,8 +235,16 @@ export default function Detail(props) {
 ```
 
 
-- search参数 简单参数，不用声明接收~
+- search参数 简单参数，不用声明接收~ 就是urlencoded格式
+> 需要安装一个包`pnpm add querystring`
+* v5版本：
 ```
+
+
+```
+* v6版本：
+```
+
 
 ```
 
