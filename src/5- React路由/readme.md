@@ -190,6 +190,7 @@ https://blog.csdn.net/qq_44850230/article/details/125252546
 ---
 ### ReactRouter传参
 - params参数 简单参数
+* v5 版本：
 ```
 // 携带参数
 <Link to='/a/b/Tom/18'></Link>
@@ -199,6 +200,40 @@ https://blog.csdn.net/qq_44850230/article/details/125252546
 User中使用Props接收
 const {name, age} = this.props.match.params;
 ```
+* v6版本：
+```jsx
+// 携带参数
+<Link to='/a/b/Tom/18'></Link>
+// 路由器注册声明
+<Route path='/a/b/c/:name/:age' element={<User/>}>
+
+// 引入钩子
+import {useParams} from "react-router-dom";
+// 使用函数式组件
+export default function Detail(props) {
+    // const {children} = props;
+    console.log("props", props);
+    console.log("params", useParams());
+    // console.log("location", useLocation());
+    // 使用钩子接收params参数
+    const {id, title} = useParams();
+    const findResult = DetailData.find((detailObj)=>{
+        return detailObj.id === id;
+    });
+    return (
+        <div>
+            <ul>
+                <li>id: {id}</li>
+                <li>title: {title}</li>
+                <li>content: {findResult.content}</li>
+            </ul>
+        </div>
+    );
+}
+
+
+```
+
 
 - search参数 简单参数，不用声明接收~
 ```

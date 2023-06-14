@@ -50,6 +50,7 @@ export default function Detail(props) {
     console.log("props", props);
     console.log("params", useParams());
     // console.log("location", useLocation());
+    // 使用钩子接收params参数
     const {id, title} = useParams();
     const findResult = DetailData.find((detailObj)=>{
         return detailObj.id === id;
