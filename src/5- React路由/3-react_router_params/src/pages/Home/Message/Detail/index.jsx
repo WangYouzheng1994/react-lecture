@@ -25,7 +25,11 @@ const DetailData = [
         /!*console.log(this);
         console.log("啦啦", this.props);*!/
         // 接收url params参数
-        const {id, title} = this.props.match.params;
+        // const {id, title} = this.props.match.params;
+        // 接收 search参数
+        const {search} = this.props.location;
+        // 使用qs格式化urlencoded格式的search数据
+        const {id, title} = qs.parse(search.slice(1));
         const findResult = DetailData.find((detailObj)=>{
             return detailObj.id === id;
         });
