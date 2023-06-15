@@ -56,7 +56,7 @@ pnpm install react-router-dom
 
 2. hash模式 HashRouter
 * url会有一个#号，并且井号后面的数据不会传递给后台（#的约定意义: 锚点，hash前端资源）
-* 不会有历史记录
+* 不会有历史记录 注意（他只是默认用了replace模式）
 - router6.x的使用方式
 ```jsx
 <BrowserRouter>
@@ -394,12 +394,27 @@ export default function Detail(props) {
 <Link to='/abc/a'/>
 ```
 - v6:
+```jsx
+// 默认就是push
+<Link to='/abc/a'/>
+```
+---
+
 * replace 模式，不会留下痕迹，没有前进和后退~~ 因为不压栈啊，直接变更了。history中只有一条~
+- v6:
+```jsx
+<Link replace={true} to={`/home/message/detail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>
+// 简写
+<Link replace to={`/home/message/detail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>
+```
 - v5:
 ```jsx
 <Link replace to='/abc/a'/>
 ```
 --- 
+
+* 总结push和replace
+1. state传参默认是使用replace的
 
 ### 编程式路由
 * 没有link，不需要点击触发的。

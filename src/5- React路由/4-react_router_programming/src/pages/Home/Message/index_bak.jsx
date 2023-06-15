@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Detail from './Detail'
-import {Link, Route, Routes} from 'react-router-dom'
+import {Link, Route, Routes, useNavigate} from 'react-router-dom'
 
 export default class Message extends Component {
     state = {
@@ -9,6 +9,20 @@ export default class Message extends Component {
             {id: '02', title: '消息2'},
             {id: '03', title: '消息5555'},
         ]
+    }
+
+    /**
+     * replace路由 v5
+     */
+/*    replaceRouter(id, title) {
+        this.props.history.replace(`/home/message/detail/${id}/${title}`)
+    }*/
+
+    /**
+     * replace路由 v6 使用useNavigate
+     */
+    replaceRouter(id, title) {
+        useNavigate(`/home/message/detail/${id}/${title}`, {replace: true})
     }
 
     render() {
@@ -39,6 +53,8 @@ export default class Message extends Component {
                                     {/*<Link to={{pathname:`/home/message/detail`, state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link>*/}
                                     {/*state的方式v6版本的传参，to还是一个纯粹的路由地址，Link组件单独接收state*/}
                                     <Link to={`/home/message/detail`} state={{id:msgObj.id,title:msgObj.title}}>{msgObj.title}</Link>
+                                    {/*<button onClick={}>push查看</button>*/}
+                                    <button onClick={() => this.replaceRouter(msgObj.id, msgObj.title)}>replace查看</button>
                                 </li>
                             );
                         })
@@ -61,3 +77,5 @@ export default class Message extends Component {
         )
     }
 }
+
+
