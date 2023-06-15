@@ -14,16 +14,33 @@ export default class Message extends Component {
     /**
      * replace路由 v5
      */
-/*    replaceRouter(id, title) {
+    replaceRouter(id, title) {
+        // replace跳轉+ param參數
         this.props.history.replace(`/home/message/detail/${id}/${title}`)
-    }*/
+
+        // replace跳轉+ search參數
+        this.props.history.replace(`/home/message/detail?id=${id}&title=${title}`)
+
+        // replace跳轉 携帶state
+        this.props.history.replace(`/home/message/detail}`, {id, title})
+    }
 
     /**
-     * replace路由 v6 使用useNavigate
+     * push路由 v5
+     * @param id
+     * @param title
      */
-    replaceRouter(id, title) {
-        useNavigate(`/home/message/detail/${id}/${title}`, {replace: true})
+    pushShow(id, title) {
+        // push跳轉+ param參數
+        this.props.history.push(`/home/message/detail/${id}/${title}`)
+
+        // push跳轉+ search參數
+        this.props.history.push(`/home/message/detail?id=${id}&title=${title}`)
+
+        // push跳轉 携帶state
+        this.props.history.push(`/home/message/detail}`, {id, title})
     }
+
 
     render() {
         let {messageArr} = this.state;
