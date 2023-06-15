@@ -13,6 +13,20 @@ pnpm install react-router-dom
 ```
 * 通过比对html源码 发现切换其实就是一种动态的切换dom节点。 他的效果其实和传统的iframe还是有区别的。但是看起来很像而已~
 
+### 路由组件和非路由组件的区别
+1. 存放位置不同
+* 一般组件 components
+* 路由组件 pages
+2. 接收到的props不同
+* 一般组件 在组件的调用的时候传参，传什么，组件就能拿到什么
+* 路由组件 
+  * v5接收到三个固定属性
+    * history
+    * location
+    * match
+  * v6 在函数式组件利用钩子获取对应的值
+    * useParams()
+    * useLocation()
 ### 路由有两种模式
 1. 浏览器历史模式 BrowserRouter
 * 浏览器的API
@@ -183,10 +197,12 @@ pnpm install react-router-dom
 > 但是v5需要带着父路由，如/home/news
 
 
-#### 关于React Router 5.x和6.x的重定向与嵌套路由以及精准模糊匹配的总价
-
+#### 关于React Router 5.x和6.x的重定向与嵌套路由以及精准模糊匹配的总结
 https://blog.csdn.net/qq_44850230/article/details/125252546
 
+---
+
+3-react_router_params
 ---
 ### ReactRouter传参
 - params参数 简单参数
@@ -358,15 +374,31 @@ export default function Detail(props) {
 ```
 
 - params、search、state三种参数总结
+
 >  https://www.cnblogs.com/wwp666/p/15977149.html  
 > https://blog.csdn.net/D_ttxd/article/details/123342450
 
-1. params、search可以使用
+
+1. params、search使用字符串的方式传参，并且在url体现。state不体现
+2. state是基于缓存的方式传递，因此如果浏览器清空缓存的话，传参会失效。 
+
+---
+
+4-react-router-programming
 
 ### React的路由模式
 * push 默认模式
+- v5：
+```jsx
+// 默认就是push
+<Link to='/abc/a'/>
+```
+- v6:
 * replace 模式，不会留下痕迹，没有前进和后退~~ 因为不压栈啊，直接变更了。history中只有一条~
-
+- v5:
+```jsx
+<Link replace to='/abc/a'/>
+```
 --- 
 
 ### 编程式路由
