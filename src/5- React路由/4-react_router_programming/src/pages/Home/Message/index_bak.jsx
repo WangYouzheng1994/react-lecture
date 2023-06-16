@@ -58,7 +58,7 @@ export default class Message extends Component {
     /**
      * 后退两步
      */
-    back = function() {
+    go = function() {
         this.props.history.go(-2);
     }
 
@@ -109,6 +109,10 @@ export default class Message extends Component {
                     {/*<Route path="/detail" element={<Detail/>}></Route>*/}
                     {/*state参数无需声明*/}
                     <Route path="/detail" element={<Detail/>}></Route>
+
+                    <button onClick={this.back}>回推</button>
+                    <button onClick={this.forward}>前进</button>
+                    <button onClick={this.go}>go</button>
                 </Routes>
             </div>
         )

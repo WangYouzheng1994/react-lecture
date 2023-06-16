@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import News from './News'
-import Message from './Message'
+import Message from './Message/index_bak'
 import {NavLink, Link, Route, Routes, Navigate} from "react-router-dom";
 
 class Home extends Component {

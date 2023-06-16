@@ -49,10 +49,21 @@ pnpm store prune 清空本地仓库中未被引用的包
 2. pnpm的仓库设置
 
 * 配置全局安装路径
-```
-pnpm config set store-dir E:\pnpm_store\dependency
+```shell
+pnpm config set store-dir G:\\pnpm_store\\dependency
 ```
 * 配置全局缓存路径
+```shell
+pnpm config set cache-dir G:\\pnpm_store\\cache
 ```
-pnpm config set cache-dir E:\pnpm_store\cache
+
+3. 安装指定版本的包
+> https://npmmirror.com/package/react-router/v/5.3.4?spm=a2c6h.24755359.0.0.8d6a69e6xyUvGQ&file=5.3.4 查看指定的包
+
+```shell
+# 安装最新的版本
+pnpm install react-router-dom
+# 安装指定的版本
+pnpm install react-router-dom@5.3.4
+pnpm install react-router-dom@classic 这个是数据源决定的
 ```
