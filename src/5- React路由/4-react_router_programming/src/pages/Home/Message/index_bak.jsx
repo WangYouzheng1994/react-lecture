@@ -41,6 +41,26 @@ export default class Message extends Component {
         this.props.history.push(`/home/message/detail}`, {id, title})
     }
 
+    /**
+     * 这种定义方法是在实例对象上
+     */
+    back = function() {
+        this.props.history.goBack();
+    }
+
+    /**
+     * 前进
+     */
+    forward = function() {
+        this.props.history.goForward();
+    }
+
+    /**
+     * 后退两步
+     */
+    back = function() {
+        this.props.history.go(-2);
+    }
 
     render() {
         let {messageArr} = this.state;

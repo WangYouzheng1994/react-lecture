@@ -418,13 +418,69 @@ export default function Detail(props) {
 
 ### 编程式路由
 * 没有link，不需要点击触发的。
-
+---
+- V5版本：
 - replace
-1. params
-2. search
-3. state
-
+1. params参数导航
+```jsx
+// replace跳轉+ param參數
+this.props.history.replace(`/home/message/detail/${id}/${title}`)
+```
+2. search参数导航
+```jsx
+// replace跳轉+ search參數
+this.props.history.replace(`/home/message/detail?id=${id}&title=${title}`)
+```
+3. state参数导航
+```jsx
+// replace跳轉 携帶state
+this.props.history.replace(`/home/message/detail}`, {id, title})
+```
 - push
 1. params
+```jsx
+// push跳轉+ param參數
+this.props.history.push(`/home/message/detail/${id}/${title}`)
+```
 2. search
+```jsx
+// push跳轉+ search參數
+this.props.history.push(`/home/message/detail?id=${id}&title=${title}`)
+```
 3. state
+```jsx
+// push跳轉 携帶state
+this.props.history.push(`/home/message/detail}`, {id, title})
+```
+
+- 路由导航
+```jsx
+ /**
+     * 这种定义方法是在实例对象上
+     */
+    back = function() {
+        this.props.history.goBack();
+    }
+
+    /**
+     * 前进
+     */
+    forward = function() {
+        this.props.history.goForward();
+    }
+
+    /**
+     * 后退两步
+     */
+    back = function() {
+        this.props.history.go(-2);
+    }
+```
+
+---
+- V6版本：
+- replace:
+- push
+- 路由导航
+
+---
