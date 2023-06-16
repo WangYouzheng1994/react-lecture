@@ -3,6 +3,7 @@ import MyNavLink from "./component/MyNavLink";
 import {Route, Switch} from "react-router-dom";
 import About from './pages/About'
 import Home from './pages/Home'
+import Header from './component/Header'
 class App extends React.Component {
   // state = {users:[], isFirst: true, isLoading: false, errorMsg: ""}
 
@@ -10,7 +11,7 @@ class App extends React.Component {
     return (
         <div className="container">
           <div className="row">
-            <header className="pb-3 mb-4 mt-2 border-bottom"><h1>React Router Demo</h1></header>
+              <Header/>
           </div>
           <div className="row">
             <div className="col-md-2">

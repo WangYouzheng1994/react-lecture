@@ -484,3 +484,59 @@ this.props.history.push(`/home/message/detail}`, {id, title})
 - 路由导航
 
 ---
+### V5 withRouter
+> 让一般组件，即不是Router包裹跳转的组件 也可以使用路由组件特有的API
+
+```jsx
+import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
+
+class Header extends Component {
+  /**
+   *
+   */
+  back = () => {
+    this.props.history.goBack();
+  }
+
+  /**
+   * 前进
+   */
+  forward = () => {
+    this.props.history.goForward();
+  }
+
+  /**
+   * 后退两步
+   */
+  go = () => {
+    this.props.history.go(-2);
+  }
+
+  render() {
+    return (
+            <header className="pb-3 mb-4 mt-2 border-bottom"><h1>React Router Demo</h1>
+              <button onClick={this.back}>回推</button>
+              <button onClick={this.forward}>前进</button>
+              <button onClick={this.go}>go</button>
+            </header>
+    )
+  }
+}
+// 使用WithRouter把一般组件的props加上路由组件的api
+export default withRouter(Header)
+```
+> withRouter返回的值是一个新的加工过的组件
+---
+### V5中的BrowserRouter和HashRouter的区别
+1. 原理
+* BrowserRouter使用了H5的history API， IE9及其以下都不能用
+* HashRouter使用的是URL的哈希值，#号后面的值不会发送到服务器，兼容性的确更好，但是一般我们的项目不会兼容低版本浏览器了
+2. url表现不同
+* BrowserRouter没有井号
+* HashRouter没有井号
+3. state参数的区别
+* BrowserRouter不会影响
+* HashRouter 刷新会丢失state
+
+> 总结：browser用的更多。

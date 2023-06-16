@@ -109,11 +109,10 @@ export default class Message extends Component {
                     <Route path="/home/message/detail" component={Detail}></Route>
                     {/*state参数无需声明*/}
                     {/*<Route replace={false} path="/home/message/detail" component={Detail}></Route>*/}
-
                 </Switch>
-                    <button onClick={this.back}>回推</button>
-                    <button onClick={this.forward}>前进</button>
-                    <button onClick={this.go}>go</button>
+                {/*<button onClick={this.back}>回推</button>
+                <button onClick={this.forward}>前进</button>
+                <button onClick={this.go}>go</button>*/}
             </div>
         )
     }
