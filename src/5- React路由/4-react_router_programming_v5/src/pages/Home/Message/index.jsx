@@ -16,13 +16,13 @@ export default class Message extends Component {
      */
     replaceRouter = (id, title)  =>  {
         // replace跳轉+ param參數
-        this.props.history.replace(`/home/message/detail/${id}/${title}`)
+        // this.props.history.replace(`/home/message/detail/${id}/${title}`)
 
         // replace跳轉+ search參數
         this.props.history.replace(`/home/message/detail?id=${id}&title=${title}`)
 
         // replace跳轉 携帶state
-        this.props.history.replace(`/home/message/detail}`, {id, title})
+        // this.props.history.replace(`/home/message/detail}`, {id, title})
     }
 
     /**
@@ -91,7 +91,7 @@ export default class Message extends Component {
                                     {/*state的方式v6版本的传参，to还是一个纯粹的路由地址，Link组件单独接收state*/}
                                     {/*<Link to={`/home/message/detail`} state={{id:msgObj.id,title:msgObj.title}}>{msgObj.title}</Link>*/}
                                     {/*<button onClick={}>push查看</button>*/}
-                                    {/*<button onClick={() => this.replaceRouter(msgObj.id, msgObj.title)}>replace查看</button>*/}
+                                    <button onClick={() => this.replaceRouter(msgObj.id, msgObj.title)}>replace查看</button>
                                 </li>
                             );
                         })
