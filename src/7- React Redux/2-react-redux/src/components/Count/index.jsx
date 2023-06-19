@@ -5,19 +5,21 @@ import store from '../../redux/store'
 export default class Count extends Component {
 
     /**
-     * 组件挂载后初始化
+     * 组件挂载后初始化，
      */
-    componentDidMount() {
-        /**
+/*    componentDidMount() {
+        /!**
          * 初始化redux中的状态变化。原先使用state的方式，当我们调用setState的时候会触发页面渲染
          * 因为redux是第三方插件，所以现在store的值更新了但是没有触发渲染。
-         */
+         *!/
         // 订阅store更新的回调
         store.subscribe(() => {
             // 调用render是不好用的
             this.setState({});// 强行用setState触发 render()
         })
     }
+    如果以后有好多组件，那么都得写监听就太麻烦了 可以直接在 index.js中重新初始化根节点
+    */
 
     /**
      * 加法
@@ -34,7 +36,7 @@ export default class Count extends Component {
     decrement = () => {
         const {value} = this.selectNumber;
         // 调用action，redux最终会调用到我们自定义的reducer function逻辑
-        store.dispatch({type:'increment', data:value*1})
+        store.dispatch({type:'decrement', data:value*1})
     }
     /**
      * 当前是奇数才加
