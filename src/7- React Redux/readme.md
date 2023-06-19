@@ -12,3 +12,8 @@ https://www.redux.org.cn/docs/introduction/PriorArt.html
 * 他根据state+action，负责初始化以及加工store的数据，
 3. store
 * 负责存储数据，连接了action和reducer
+
+### Redux 安装与使用
+```shell
+pnpm add redux
+```
