@@ -24,3 +24,15 @@ pnpm add redux
 2. 完整版
 > redux中新建 count_action.js 放置创建的action对象，将原有dispatch的硬编码提取
 > redux中新建 constants.js 放置容易写错的硬编码的 type值提取
+
+3. 异步redux
+> 通过action来区分，同步action就是个Object，异步action就是个function
+
+方案1：
+```shell
+pnpm add redux-thunk
+```
+
+方案2：
+
+
