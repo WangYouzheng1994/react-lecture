@@ -17,3 +17,10 @@ https://www.redux.org.cn/docs/introduction/PriorArt.html
 ```shell
 pnpm add redux
 ```
+1. 精简版
+> src下新建redux目录
+
+
+2. 完整版
+> redux中新建 count_action.js 放置创建的action对象，将原有dispatch的硬编码提取
+> redux中新建 constants.js 放置容易写错的硬编码的 type值提取
