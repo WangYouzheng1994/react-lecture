@@ -25,14 +25,53 @@ pnpm add redux
 > redux中新建 count_action.js 放置创建的action对象，将原有dispatch的硬编码提取
 > redux中新建 constants.js 放置容易写错的硬编码的 type值提取
 
-3. 异步redux
+3. 异步redux，具体参见4-react-redux-async
 > 通过action来区分，同步action就是个Object，异步action就是个function
 
-方案1：
+前置条件 引入redux-thunk
 ```shell
 pnpm add redux-thunk
 ```
+> 在store.js中引入thunk，以及redux中间件
+```jsx
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
+import countReducer from './count_reducer'
+
+const store = createStore(countReducer, applyMiddleware(thunk))
+export default store;
+```
+
+> 在count_action文件中 进行对应的异步处理
+
+方案1：
+```jsx
+import store from './store'
+/**
+ * 异步的action
+ */
+export const createIncrementAsyncAction = (data, time) => {
+    /*
+        自己要调用store*/
+    return () => {
+        setTimeout(() => {
+           store.dispatch(createIncrementAction(data))
+        }, time);
+    }
+}
+```
 
 方案2：
+```jsx
 
-
+export const createIncrementAsyncAction = (data, time) => {
+    /**
+     * 直接用redux傳進來的dispatch實現
+     */
+    return (dispatch) => {
+        setTimeout(() => {
+            dispatch(createIncrementAction(data))
+        }, time);
+    }
+}
+```
