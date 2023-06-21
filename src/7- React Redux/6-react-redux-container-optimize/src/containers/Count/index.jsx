@@ -50,4 +50,4 @@ function mapDispatchToProps(dispatch) {
  * connect方法返回了一个方法
  * 第二个方法传入Component
  */
-export default connect(a, b)(CountUI)
+export default connect(mapDispatchToProps, b)(CountUI)
