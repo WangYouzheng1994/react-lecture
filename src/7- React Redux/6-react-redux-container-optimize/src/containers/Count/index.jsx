@@ -53,8 +53,14 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     state => ({count: state}),
 
-    dispatch => ({
+    /*dispatch => ({
         jia: number => dispatch(createIncrementAction(number)),
         jiaAsycn: number => dispatch(createIncrementAsyncAction(number), 500),
         jian: number => dispatch(createDecrementAction(number))
-    }))(CountUI)
+    }*/
+    {
+        jia: createIncrementAsyncAction,
+        jiaAsycn: createIncrementAsyncAction,
+        jian: createDecrementAction
+    }
+)(CountUI)

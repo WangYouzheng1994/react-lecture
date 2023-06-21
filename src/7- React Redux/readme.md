@@ -220,5 +220,33 @@ store.subscribe(() => {
 ---
 ### ### React-Redux的优化版本
 1. 编码层
+```js
+/**
+ * connect方法又返回了一个方法
+ * 第二个方法传入UI Component
+ */
+export default connect(
+    state => ({count: state}),
+    dispatch => ({
+        jia: number => dispatch(createIncrementAction(number)),
+        jiaAsycn: number => dispatch(createIncrementAsyncAction(number), 500),
+        jian: number => dispatch(createDecrementAction(number))
+    }))(CountUI)
+```
+2. mapDispatchToProps的api层优化，mapDispatchToProps改成传递对象 key就是对外暴露的props的可以，value为action的value
+```js
+export default connect(
+    state => ({count: state}),
 
-2. mapDispatchToProps的api层
+    /*dispatch => ({
+        jia: number => dispatch(createIncrementAction(number)),
+        jiaAsycn: number => dispatch(createIncrementAsyncAction(number), 500),
+        jian: number => dispatch(createDecrementAction(number))
+    }*/
+    {
+        jia: createIncrementAsyncAction,
+        jiaAsycn: createIncrementAsyncAction,
+        jian: createDecrementAction
+    }
+)(CountUI)
+```
