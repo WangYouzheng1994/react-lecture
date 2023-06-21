@@ -26,7 +26,7 @@ function a(state) {
  * @param dispatch
  * @returns {{jia: jia}}
  */
-function b(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         jia: (number) => {
             // 调用到redux的increment逻辑
