@@ -115,3 +115,10 @@ export const createIncrementAsyncAction = (data, time) => {
     }
 }
 ```
+
+---
+### React-Redux的使用
+1. 安装
+```shell
+pnpm add react-redux
+```

@@ -1,27 +1,10 @@
 import React, {Component} from 'react'
 // 引入redux store
-import store from '../../redux/store'
+// import store from '../../redux/store'
 // 引入actionCreator，创建action对象
 import {createIncrementAction, createDecrementAction} from '../../redux/count_action'
 
 export default class Count extends Component {
-
-    /**
-     * 组件挂载后初始化，
-     */
-    componentDidMount() {
-        /**
-         * 初始化redux中的状态变化。原先使用state的方式，当我们调用setState的时候会触发页面渲染
-         * 因为redux是第三方插件，所以现在store的值更新了但是没有触发渲染。
-         */
-        // 订阅store更新的回调
-        store.subscribe(() => {
-            // 调用render是不好用的
-            this.setState({});// 强行用setState触发 render()
-        })
-    }
-    /*如果以后有好多组件，那么都得写监听就太麻烦了 可以直接在 index.js中重新初始化根节点
-    */
 
     /**
      * 加法
@@ -31,7 +14,9 @@ export default class Count extends Component {
         // 调用action，redux最终会调用到我们自定义的reducer function逻辑
         // store.dispatch({type:'increment', data:value*1})
         // 调用Action
-        store.dispatch(createIncrementAction(value*1));
+        // store.dispatch(createIncrementAction(value*1));
+
+        this.props.jia(value*1);
     }
 
     /**
@@ -41,7 +26,8 @@ export default class Count extends Component {
         const {value} = this.selectNumber;
         // 调用action，redux最终会调用到我们自定义的reducer function逻辑
         // store.dispatch({type:'decrement', data:value*1})
-        store.dispatch(createDecrementAction(value*1));
+        // store.dispatch(createDecrementAction(value*1));
+        this.props.jian(value*1);
     }
 
     /**
@@ -49,10 +35,12 @@ export default class Count extends Component {
      */
     incrementIfOdd = () => {
         const {value} = this.selectNumber;
-        const count = store.getState();
+        // const count = store.getState();
+        const count = this.props.count;
         if (count %2 !== 0) {
             // store.dispatch({type:'increment', data:value*1})
-            store.dispatch(createIncrementAction(value*1));
+            // store.dispatch(createIncrementAction(value*1));
+            this.props.jia(value*1);
         }
     }
 
@@ -61,16 +49,19 @@ export default class Count extends Component {
      */
     incrementAsync = () => {
         const {value} = this.selectNumber;
-        setTimeout(() => {
+        /*setTimeout(() => {
             // store.dispatch({type:'increment', data:value*1})
             store.dispatch(createIncrementAction(value*1));
-        }, 500)
+        }, 500)*/
+        this.props.jiaAsycn(value*1);
     }
 
     render() {
         return (
             <div>
-                <h1>当前求和为：{store.getState()}</h1>
+                {/*<h1>当前求和为：{store.getState()}</h1>*/}
+                <h1>当前求和为：{this.props.count}</h1>
+
                 {/*把select节点存到了 this.selectNumber*/}
                 <select ref={c => this.selectNumber = c}>
                     <option value="1">1</option>
