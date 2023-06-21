@@ -250,3 +250,6 @@ export default connect(
     }
 )(CountUI)
 ```
+
+3. 使用Provider
+> 解决手动全局订阅变动 自己手动刷新的问题， 解决手动显式传递store的问题
