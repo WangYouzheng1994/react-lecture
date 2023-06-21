@@ -122,3 +122,103 @@ export const createIncrementAsyncAction = (data, time) => {
 ```shell
 pnpm add react-redux
 ```
+2. 整体步骤
+> 使用react-redux中的connect连接 现有的ui component组件以及redux组件(store和action)
+
+src中新建containers目录 根据模块创建一个目录 在旗下创建index.jsx
+```js
+// 引入连接器，连接ui和redux
+import {connect} from 'react-redux'
+
+
+/**
+ * redux 会把state传递进来 我们自己就不用引入store了
+ * 该函数所返回的对象中的key/value 就是给ui组件props的key/value，作为状态store组件
+ * 这个函数在redux中，称之为mapStateToProps
+ *
+ * @param state
+ * @returns {{count}}
+ */
+function a(state) {
+    return {count: state}
+}
+
+/**
+ * redux 会把dispatch传递进来
+ * 该函数所返回的对象中的key/value 就是给ui组件props的key/value，作为操作stroe的action
+ * 这个函数在redux中，称之为mapDispatchToProps
+ *
+ * @param dispatch
+ * @returns {{jia: jia}}
+ */
+function b(dispatch) {
+    return {
+        jia: (number) => {
+            // 调用到redux的increment逻辑
+            // dispatch({type: 'increment', data})
+            dispatch(createIncrementAction(number))
+        },
+
+        jiaAsycn: (number) => {
+            setTimeout(()=> {
+                dispatch(createIncrementAction(number))
+            }, 500)
+        },
+
+        jian: (number) => {
+            dispatch(createDecrementAction(number));
+        }
+    }
+}
+
+/**
+ * connect方法返回了一个方法
+ * 第二个方法传入Component
+ */
+export default connect(a, b)(CountUI)
+
+```
+
+在现有的ui组件的 父级组件调用的时候 改成引入container组件，并且将对应的store作为props进行传递
+```jsx
+import React, {Component} from 'react'
+//引入的是容器组件
+import Count from "./containers/Count";
+import store from './redux/store';
+
+
+class App extends Component {
+  render() {
+    return (
+        <div>
+          {/*  给容器组件传递store*/}
+          <Count store={store}/>
+        </div>
+    )
+  }
+}
+
+export default App;
+```
+继续保留index.js文件中的全局刷新
+
+
+```js
+import store from './redux/store'
+
+// 全局监听redux，并且重新刷新
+store.subscribe(() => {
+    root.render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    );
+})
+
+
+```
+---
+### ### React-Redux的优化版本
+1. 编码层
+
+2. mapDispatchToProps的api层
