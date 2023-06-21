@@ -17,11 +17,51 @@ https://www.redux.org.cn/docs/introduction/PriorArt.html
 ```shell
 pnpm add redux
 ```
-1. 精简版
+1. 精简版，具体参见2-react-redux
 > src下新建redux目录
 
+新建store.js文件
+```js
+/**
+ * 该文件用于暴露一个 store对象
+ */
+import {createStore} from 'redux'
+import countReducer from './count_reducer'
 
-2. 完整版
+const store = createStore(countReducer)
+export default store;
+
+```
+新建count_reducer.js
+```js
+/**
+ * 该文件用于暴露一个 store对象
+ */
+import {createStore} from 'redux'
+import countReducer from './count_reducer'
+
+const store = createStore(countReducer)
+export default store;
+```
+
+组件使用
+```jsx
+// 引入redux store
+import store from '../../redux/store'
+
+// ...
+/**
+ * 加法
+ */
+increment = () => {
+    const {value} = this.selectNumber;
+    // 调用action，redux最终会调用到我们自定义的reducer function逻辑
+    store.dispatch({type:'increment', data:value*1})
+}
+// ...
+```
+
+2. 完整版，具体参见3-react-redux-full
 > redux中新建 count_action.js 放置创建的action对象，将原有dispatch的硬编码提取
 > redux中新建 constants.js 放置容易写错的硬编码的 type值提取
 
