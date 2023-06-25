@@ -1,8 +1,12 @@
 /**
  * 该文件用于暴露一个 store对象
  */
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import countReducer from './count_reducer'
+/**
+ * 引入redux-thunk 支持异步的action
+ */
+import thunk from 'redux-thunk'
 
-const store = createStore(countReducer)
+const store = createStore(countReducer, applyMiddleware(thunk))
 export default store;

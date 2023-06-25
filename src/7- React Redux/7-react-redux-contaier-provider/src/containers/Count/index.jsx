@@ -34,10 +34,8 @@ function mapDispatchToProps(dispatch) {
             dispatch(createIncrementAction(number))
         },
 
-        jiaAsycn: (number) => {
-            setTimeout(() => {
-                dispatch(createIncrementAction(number))
-            }, 500)
+        jiaAsycn: (number, time) => {
+            dispatch(createIncrementAction(number,time))
         },
 
         jian: (number) => {
@@ -55,7 +53,7 @@ export default connect(
 
     /*dispatch => ({
         jia: number => dispatch(createIncrementAction(number)),
-        jiaAsycn: number => dispatch(createIncrementAsyncAction(number), 500),
+        jiaAsycn: (number,time) => dispatch(createIncrementAsyncAction(number, 500)),
         jian: number => dispatch(createDecrementAction(number))
     }*/
     {
