@@ -10,3 +10,24 @@ function createDecrementAction(data) {
     return {type:'decrement', data};
 }
 */
+/**
+ * 异步的action
+ */
+export const createIncrementAsyncAction = (data, time) => {
+    /*
+        自己要调用store
+    return () => {
+        setTimeout(() => {
+           store.dispatch(createIncrementAction(data))
+        }, time);
+    }*/
+
+    /**
+     * 直接用redux傳進來的dispatch實現
+     */
+    return (dispatch) => {
+        setTimeout(() => {
+            dispatch(createIncrementAction(data))
+        }, time);
+    }
+}

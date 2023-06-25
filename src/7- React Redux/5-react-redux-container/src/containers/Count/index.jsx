@@ -1,7 +1,7 @@
 // 引入Count Component （其实就是UI
 import CountUI from '../../components/Count'
 // 引入action
-import {createDecrementAction, createIncrementAction} from '../../redux/count_action'
+import {createDecrementAction, createIncrementAction, createIncrementAsyncAction} from '../../redux/count_action'
 // store不允许自己引入，需要从父组件传递进来
 // 引入连接器，连接ui和redux
 import {connect} from 'react-redux'
@@ -34,10 +34,8 @@ function b(dispatch) {
             dispatch(createIncrementAction(number))
         },
 
-        jiaAsycn: (number) => {
-            setTimeout(()=> {
-                dispatch(createIncrementAction(number))
-            }, 500)
+        jiaAsycn: (number, time) => {
+            dispatch(createIncrementAsyncAction(number, time))
         },
 
         jian: (number) => {
