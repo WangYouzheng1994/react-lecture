@@ -61,10 +61,10 @@ export default class Count extends Component {
      */
     incrementAsync = () => {
         const {value} = this.selectNumber;
-        setTimeout(() => {
+        // setTimeout(() => {
             // store.dispatch({type:'increment', data:value*1})
-            store.dispatch(createIncrementAsyncAction(value*1));
-        }, 500)
+            store.dispatch(createIncrementAsyncAction(value*1, 500));
+        // }, 500)
     }
 
     render() {

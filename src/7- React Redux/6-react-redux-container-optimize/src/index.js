@@ -11,6 +11,7 @@ root.render(
 );
 
 // 全局监听redux，并且重新刷新
+/*
 store.subscribe(() => {
     root.render(
         <React.StrictMode>
@@ -18,3 +19,4 @@ store.subscribe(() => {
         </React.StrictMode>
     );
 })
+*/

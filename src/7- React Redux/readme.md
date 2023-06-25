@@ -219,6 +219,8 @@ store.subscribe(() => {
 ```
 ---
 ### ### React-Redux的优化版本
+> 优势：1.解决手动全局订阅变动 自己手动刷新render的问题(因为connnect()方法的原因，容器组件自己就刷新了). 
+> 使用react-redux中的provider 使redux自动注入到对应的component中的props
 1. 编码层
 ```js
 /**
@@ -251,5 +253,29 @@ export default connect(
 )(CountUI)
 ```
 
-3. 使用Provider
-> 解决手动全局订阅变动 自己手动刷新的问题， 解决手动显式传递store的问题
+3. 使用Provider，详见 7-react-redux-contaier-provider工程
+> 解决手动显式传递store的问题
+
+1. 在对应的注入去掉store的注入
+2. 在index.js中引入store 和provier，具体如下
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import store from './redux/store'
+import {Provider} from 'react-redux';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+      <Provider store={store}>
+          <App />
+      </Provider>
+  </React.StrictMode>
+);
+```
+
+
+
+
+
