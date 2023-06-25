@@ -64,7 +64,8 @@ class Count extends Component {
         return (
             <div>
                 {/*<h1>当前求和为：{store.getState()}</h1>*/}
-                <h1>当前求和为：{this.props.count}</h1>
+                <h2>我是Count组件</h2>
+                <h4>当前求和为：{this.props.count}</h4>
 
                 {/*把select节点存到了 this.selectNumber*/}
                 <select ref={c => this.selectNumber = c}>
