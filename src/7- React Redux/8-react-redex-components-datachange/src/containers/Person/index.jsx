@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
+import {nanoid} from 'nanoid'
 
 class Person extends Component {
     addPerson = () => {
         const name = this.nameNode.value;
         const age = this.ageNode.value;
-        console.log(name, age);
+
+        // 使用nanoid 生成id
+        const personObj = {id: nanoid(), name, age}
+        console.log(personObj);
     }
 
     render() {
