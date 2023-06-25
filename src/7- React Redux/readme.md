@@ -229,7 +229,7 @@ export default connect(
     state => ({count: state}),
     dispatch => ({
         jia: number => dispatch(createIncrementAction(number)),
-        jiaAsycn: number => dispatch(createIncrementAsyncAction(number), 500),
+        jiaAsycn: number => dispatch(createIncrementAsyncAction(number, 500)),
         jian: number => dispatch(createDecrementAction(number))
     }))(CountUI)
 ```

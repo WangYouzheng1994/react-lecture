@@ -52,12 +52,30 @@ function mapDispatchToProps(dispatch) {
  */
 export default connect(
     state => ({count: state}),
-
+    // mapDispatchToProps
     /*dispatch => ({
+        jia: (number) => {
+            // 调用到redux的increment逻辑
+            // dispatch({type: 'increment', data})
+            dispatch(createIncrementAction(number))
+        },
+
+        jiaAsycn: (number) => {
+            setTimeout(() => {
+                dispatch(createIncrementAction(number))
+            }, 500)
+        },
+
+        jian: (number) => {
+            dispatch(createDecrementAction(number));
+        }
+    })*/
+/*    dispatch => ({
         jia: number => dispatch(createIncrementAction(number)),
-        jiaAsycn: number => dispatch(createIncrementAsyncAction(number), 500),
+        jiaAsycn: (number, time) => dispatch(createIncrementAsyncAction(number, time)),
         jian: number => dispatch(createDecrementAction(number))
-    }*/
+    })*/
+    // API级别的优化~
     {
         jia: createIncrementAsyncAction,
         jiaAsycn: createIncrementAsyncAction,
