@@ -274,8 +274,19 @@ root.render(
   </React.StrictMode>
 );
 ```
+---
+### React-redux 数据共享， 具体参见 8-react-redex-components-datachange
+1. 将UI组件与数据容器进行合并为同一个文件，放到src/containers中，目录按照组件命名
+2. redux中的action和reducer文件分别放到 src/redux/actions、reducers中，文件根据组件命名。
+3. store.js中引入combineReducers，将多个reducer进行合并。
+4. 容器组件的connect中， mapStateToProps返回的对象可以从 state.xxx中获取，然后进行跨组件数据共享
+---
 
-
+### Redux对于Reducer的要求
+1. 必须是一个纯函数，相同的入参得到相同的返回值
+* 不允许修改reducer方法的参数
+* 不会产生任何副作用（I/O的报错，Network的报错
+* 不能调用Date.now()或者Math.random()这种不纯的方法
 
 
 
