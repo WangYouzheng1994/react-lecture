@@ -23,4 +23,8 @@ this.setState((state) => ({count: state.count+1}))
 
 > 新状态不依赖原状态，直接用对象。依赖原状态或者依赖props参数，那么用函数式
 
+---
+
+### lazyLoad
+> 路由懒加载
 
