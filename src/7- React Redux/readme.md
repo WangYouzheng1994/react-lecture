@@ -288,5 +288,23 @@ root.render(
 * 不会产生任何副作用（I/O的报错，Network的报错
 * 不能调用Date.now()或者Math.random()这种不纯的方法
 
+---
+### React-Redux的最终版，详见9-react-redux-final
+1. redux-devtools 
+```shell
+安装包
+pnpm add redux-devtools-extension
+```
+
+> 在store.js中引入，并且进行相关处理具体如下：
 
 
+```jsx
+import {composeWithDevTools} from 'redux-devtools-extension'
+
+// 引入开发者工具
+// 1. 无中间件的情况
+// const store = createStore(allReduceers, composeWithDevTools())
+// 2. 有中间件的情况
+const store = createStore(allReduceers, composeWithDevTools(applyMiddleware(thunk)))
+```
