@@ -308,3 +308,17 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 // 2. 有中间件的情况
 const store = createStore(allReduceers, composeWithDevTools(applyMiddleware(thunk)))
 ```
+
+---
+### 番外篇：本地启动一个服务器 将打包的目录启动
+1. 打包
+```shell
+pnpm run build
+```
+> 打包后的目录在build作为工程文件的根目录
+2. 启动服务
+```shell
+pnpm install -g serve
+serve -s build
+```
+> 如果提示pnpm global报错， 手动指定path目录 以及新增变量 PNPM_HOME 即可，pnpm_home中的目录必须出现在path中哈~
