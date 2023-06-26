@@ -94,7 +94,6 @@ class Count extends Component {
  * @param state
  * @returns {{count}}
  */
-
 /**
  * redux 会把dispatch传递进来
  * 该函数所返回的对象中的key/value 就是给ui组件props的key/value，作为操作stroe的action
@@ -110,7 +109,9 @@ class Count extends Component {
  * 第二个方法传入UI Component
  */
 export default connect(
-    state => ({count: state}),
+    // state.count 值的是 countReducer
+    // state => ({count: state}),
+    state => ({count: state.count}),
 
     /*dispatch => ({
         jia: number => dispatch(createIncrementAction(number)),
