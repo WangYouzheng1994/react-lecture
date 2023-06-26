@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 // 引入action
-import {createDecrementAction, createIncrementAction, createIncrementAsyncAction} from '../../redux/actions/count'
+import {
+    increment,decrement,incrementAsync
+} from '../../redux/actions/count'
 // store不允许自己引入，需要从父组件传递进来
 // 引入连接器，连接ui和redux
 import {connect} from 'react-redux'
@@ -20,7 +22,7 @@ class Count extends Component {
         // 调用Action
         // store.dispatch(createIncrementAction(value*1));
 
-        this.props.jia(value*1);
+        this.props.increment(value*1);
     }
 
     /**
@@ -31,7 +33,7 @@ class Count extends Component {
         // 调用action，redux最终会调用到我们自定义的reducer function逻辑
         // store.dispatch({type:'decrement', data:value*1})
         // store.dispatch(createDecrementAction(value*1));
-        this.props.jian(value*1);
+        this.props.decrement(value*1);
     }
 
     /**
@@ -44,7 +46,7 @@ class Count extends Component {
         if (count %2 !== 0) {
             // store.dispatch({type:'increment', data:value*1})
             // store.dispatch(createIncrementAction(value*1));
-            this.props.jia(value*1);
+            this.props.increment(value*1);
         }
     }
 
@@ -57,7 +59,7 @@ class Count extends Component {
             // store.dispatch({type:'increment', data:value*1})
             store.dispatch(createIncrementAction(value*1));
         }, 500)*/
-        this.props.jiaAsycn(value*1, 500);
+        this.props.incrementAsync(value*1, 500);
     }
 
     render() {
@@ -119,8 +121,8 @@ export default connect(
         jian: number => dispatch(createDecrementAction(number))
     }*/
     {
-        jia: createIncrementAsyncAction,
-        jiaAsycn: createIncrementAsyncAction,
-        jian: createDecrementAction
+        increment,
+        incrementAsync,
+        decrement
     }
 )(Count)

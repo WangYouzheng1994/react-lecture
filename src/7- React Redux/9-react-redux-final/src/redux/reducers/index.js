@@ -8,4 +8,4 @@ import count from './count'
 import person from "./person";
 
 // 多个reducer合并
-export default combineReducers({person: person, count: count});
+export default combineReducers({person, count});

@@ -8,8 +8,8 @@ function createDecrementAction(data) {
     return {type:'decrement', data};
 }
 */
-export const createIncrementAction = data => ({type: INCREMENT, data})
-export const createDecrementAction = data => ({type: DECREMENT, data})
+export const increment = data => ({type: INCREMENT, data})
+export const decrement = data => ({type: DECREMENT, data})
 
 /**
  * 异步的action redux 根据action的返回值类型决定的是不是异步，如果是function那么就是异步，否则是同步的
@@ -18,10 +18,10 @@ export const createDecrementAction = data => ({type: DECREMENT, data})
  * @param time
  * @returns {(function(*): void)|*}
  */
-export const createIncrementAsyncAction = (data, time) => {
+export const incrementAsync = (data, time) => {
     return (dispatch) => {
         setTimeout(() => {
-            dispatch(createIncrementAction(data))
+            dispatch(increment(data))
         }, time)
     }
 }
