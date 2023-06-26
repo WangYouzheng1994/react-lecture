@@ -17,7 +17,7 @@ class Person extends Component {
     render() {
         return (
             <div>
-                <h2>我是Person组件</h2>
+                <h2>我是Person组件, 上方组件求和为{this.props.count}</h2>
                 <input ref={c => this.nameNode = c} type="text" placeholder='输入名字'/>
                 <input ref={c => this.ageNode = c} type="text" placeholder='输入年龄'/>
                 <button onClick={this.addPerson}>添加</button>
@@ -43,7 +43,7 @@ class Person extends Component {
 export default connect(
     // state.count 值的是 countReducer
     // state => ({count: state}),
-    state => ({peoples: state.person}),
+    state => ({peoples: state.person, count: state.count}),
 
     /*dispatch => ({
         jia: number => dispatch(createIncrementAction(number)),

@@ -64,7 +64,7 @@ class Count extends Component {
         return (
             <div>
                 {/*<h1>当前求和为：{store.getState()}</h1>*/}
-                <h2>我是Count组件</h2>
+                <h2>我是Count组件，下方组件总人数为：{this.props.peoples.length}</h2>
                 <h4>当前求和为：{this.props.count}</h4>
 
                 {/*把select节点存到了 this.selectNumber*/}
@@ -111,7 +111,7 @@ class Count extends Component {
 export default connect(
     // state.count 值的是 countReducer
     // state => ({count: state}),
-    state => ({count: state.count}),
+    state => ({count: state.count, peoples: state.person}),
 
     /*dispatch => ({
         jia: number => dispatch(createIncrementAction(number)),
