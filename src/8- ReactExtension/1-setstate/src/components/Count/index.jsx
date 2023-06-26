@@ -7,7 +7,26 @@ export default class Count extends Component {
         const {value} = this.selectNumber;
         const {count} = this.state;
         // value*1的目的是转成数字 否则count+value变成拼串了
-        this.setState({count: count+value*1})
+        // this.setState({count: count+value*1})
+
+        // 对象+ 回调函数
+/*
+        this.setState({count: count+value*1}, function () {
+            console.log("回调：我更新成功了哈~", this.state.count)
+        })
+        console.log("我更新成功了哈~", this.state.count)
+*/
+
+        // 函数 + 回调函数
+        /*this.setState((state, props) => {
+            return {count: state.count+1}
+        }, () => {
+            console.log("函数 + 回调函数：我更新成功了哈~", this.state.count)
+        });*/
+
+        // 函数 + 回调函数 简写
+        this.setState((state) => ({count: state.count+1}))
+
     }
     decrement = () => {
         const {value} = this.selectNumber;
