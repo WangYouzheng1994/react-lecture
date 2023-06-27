@@ -92,8 +92,44 @@ setCount(count+1);
 setCount(preCount => preCount+1)
 ```
 
-
 #### 2. EffectHook
+> 让函数式组件具备生命周期钩子
 
+React.useEffect(函数, state数组)
+
+1. 组件挂载的钩子componentDidMount，第二个参数 数组为空
+```js
+    React.useEffect(() => {
+        console.log("@@!")
+        let timer = setInterval(() => {
+            add()
+        }, 500)
+    }, [])
+```
+2. 组件更新的钩子componentDidUpdate，第二个参数 指定的state
+```js
+// 注意，componentDidMount依然会触发~
+    React.useEffect(() => {
+        console.log("@@!")
+        setTimeout(() => {
+            add()
+        }, 500)
+    }, [count])
+```
+
+4. 组件卸载的钩子componentWillUnmount，返回的函数
+```js
+// 注意，componentDidMount、组件更新的钩子componentDidUpdate依然会触发~
+
+    React.useEffect(() => {
+        console.log("@@!")
+        let timer = setInterval(() => {
+            add()
+        }, 500)
+        return () => {
+            clearInterval(timer)
+        }
+    }, [count])
+```
 
 #### 3. RefHook
