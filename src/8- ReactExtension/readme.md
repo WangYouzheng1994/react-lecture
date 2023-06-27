@@ -73,3 +73,27 @@ const Home = lazy(() => import('./component/Home'));
     </Routes>
 </React.Suspense>
 ```
+---
+### Hooks
+> 函数式组件，没有实例对象，没有this，低版本（16.8之前）的react的函数式组件原则上来说只能做简单的组件。
+> 但是！！！16.8以后，react的hooks加入，啥都能玩儿了~~
+#### 1. stateHook
+> 让函数拥有state能力
+
+React.useState(initValue);
+> 第一次传入的值作为初始化值
+
+```jsx
+// React.useState返回一个俩元素的数组，第一个是原来的值，第二个是更新状态的函数
+const [count, setCount] = React.useState(0)
+// 方式1
+setCount(count+1);
+// 方式2
+setCount(preCount => preCount+1)
+```
+
+
+#### 2. EffectHook
+
+
+#### 3. RefHook
