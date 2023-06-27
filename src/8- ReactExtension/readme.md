@@ -157,3 +157,9 @@ import {Fragment} from "react";
 </>
 ```
 > fragment相对于空标签，fragment可以给属性值~
+---
+### Context
+> props实现父子嵌套组件的通信，context实现祖孙通信
+
+1. 定义
+2. 声明接收
