@@ -16,7 +16,6 @@ function App() {
      */
     function add() {
         setCount(count+1);
-
         setCount(preCount => preCount+1)
     }
 
