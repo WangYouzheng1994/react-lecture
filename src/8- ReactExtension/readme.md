@@ -143,3 +143,17 @@ function show() {
 
 <input ref={textref}/>
 ```
+---
+### Fragment和空标签
+> 为了让代码符合jsx语法，最终编译的时候丢掉
+
+```jsx
+import {Fragment} from "react";
+
+<Fragment>
+</Fragment>
+
+<>
+</>
+```
+> fragment相对于空标签，fragment可以给属性值~
