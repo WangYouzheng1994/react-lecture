@@ -133,3 +133,13 @@ React.useEffect(函数, state数组)
 ```
 
 #### 3. RefHook
+> 和 React.createRef是一样的
+```jsx
+
+const textref = React.useRef();
+function show() {
+    alert(textref.current.value)
+}
+
+<input ref={textref}/>
+```
