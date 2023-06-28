@@ -161,7 +161,54 @@ import {Fragment} from "react";
 ### Context
 > props实现父子嵌套组件的通信，context实现祖孙通信
 
-1. 定义
-2. 声明接收
+1. 定义context容器对象
+```jsx
+const xxxContext = React.createContext();
 
+// 给Parent及其子组件 传递了Context，内容为：{username:this.state.username,age:123}
+<Provider value={{username:this.state.username,age:123}}>
+    <Parent/>
+</Provider>
+```
+2. 声明接收，类组件
+```jsx
+import MyContext from '../../context/Mycontext'
+
+class Child extends Component {
+    // 声明
+    static contextType = MyContext;
+
+    render() {
+        console.log(this);
+        console.log(this.context);
+        return (
+            <div className="child">
+                你好，我是child
+                <h4>我从最外层拿到的用户名是：{this.context.username}</h4>
+            </div>
+        )
+    }
+}
+```
 3. 函数式组件的使用~~
+```jsx
+// 函数式组件，使用<Consumer>标签包裹期望使用context内容的代码
+function Child() {
+    return (
+        <div className="child">
+            <MyContext.Consumer>
+                {
+                    // return <span>返回节点</span>
+                    /*value => {
+                        // value就是context的值
+                        return `${value.username}, 年龄是：${value.age}`
+                    }*/
+                    // 简写
+                    value => `${value.username}, 年龄是：${value.age}`
+                }
+            </MyContext.Consumer>
+        </div>
+    )
+}
+export default Child;
+```
