@@ -212,3 +212,24 @@ function Child() {
 }
 export default Child;
 ```
+---
+
+### 组件优化
+> Component的两个不合理的问题：
+1. 当父组件产生了修改，触发了render，即使子组件没有使用父组件的数据，子组件也会render
+2. 父组件 setState({})，没有操作任何数据，他的组件以及子组件也会render
+
+解决以上触发的低效render行为：
+> 借助shouldcomponentupdate钩子，针对即将更新的值进行判定。
+```jsx
+shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log(nextProps);
+        console.log(this.props.carName);
+        return this.props.carName !== nextProps.carName;
+    }
+
+```
+> 用生命周期钩子，会发现需要手动的逐一比较，非常麻烦。
+
+高级做法~~ 
+### PureComponent
