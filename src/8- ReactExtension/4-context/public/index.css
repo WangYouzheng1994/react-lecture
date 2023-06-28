@@ -1,0 +1,38 @@
+/* 如果不引入bootstrap，就用这段样式，核心是box-sizing 否则会导致padding 从而超出父元素，原因很简单~默认的是contentbox，100%的宽度不计算padding和border的，那么横向就会超出的哈~
+div {
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    border: 0px;
+    !*https://blog.csdn.net/meteoite/article/details/118160717*!
+    box-sizing: border-box;
+}
+
+.grand {
+    width: 500px;
+    background-color: orange;
+}
+
+.parent {
+    background-color: skyblue;
+}
+
+.child {
+    background-color: gray;
+}
+*/
+.parent{
+    width: 500px;
+    background-color: orange;
+    padding: 8px;
+}
+.child{
+    width: 100%;
+    background-color: skyblue;
+    padding: 8px;
+}
+.grand{
+    width: 100%;
+    background-color: gray;
+    padding: 8px;
+}

@@ -9,7 +9,7 @@
 * SPA是基于BOM History栈来的。
 * 常见的是使用官方的React-Router-Dom
 ```
-pnpm install react-router-dom
+pnpm add react-router-dom
 ```
 * 通过比对html源码 发现切换其实就是一种动态的切换dom节点。 他的效果其实和传统的iframe还是有区别的。但是看起来很像而已~
 

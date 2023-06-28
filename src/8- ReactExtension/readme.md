@@ -163,3 +163,5 @@ import {Fragment} from "react";
 
 1. 定义
 2. 声明接收
+
+3. 函数式组件的使用~~
