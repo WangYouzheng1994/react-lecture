@@ -219,7 +219,7 @@ export default Child;
 1. 当父组件产生了修改，触发了render，即使子组件没有使用父组件的数据，子组件也会render
 2. 父组件 setState({})，没有操作任何数据，他的组件以及子组件也会render
 
-解决以上触发的低效render行为：
+解决以上触发的低效render行为：具体参见5-purecomponet/component/component
 > 借助shouldcomponentupdate钩子，针对即将更新的值进行判定。
 ```jsx
 shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -231,5 +231,8 @@ shouldComponentUpdate(nextProps, nextState, nextContext) {
 ```
 > 用生命周期钩子，会发现需要手动的逐一比较，非常麻烦。
 
-高级做法~~ 
-### PureComponent
+##### 高级做法~~，使用PureComponent，
+> PureComponent是重写了 shouldComponentUpdate钩子，使用比较算法，
+> 但是有个小问题：也不算是问题，说白了就是她是浅比较（引用地址比较），她比较不了对象中的属性变化，
+> 因此setState的时候引用类型（数组、对象)必须是新的
+

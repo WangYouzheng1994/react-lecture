@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css'
 
-class App extends React.PureComponent {
+class Component extends React.Component {
     state = {"carName": "奔驰C36"}
 
     /**
@@ -12,12 +12,25 @@ class App extends React.PureComponent {
     }
 
     /**
+     * 判定是否应该render~ 声明周期钩子
+     *
+     * @param nextProps
+     * @param nextState
+     * @param nextContext
+     */
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if (this.state.carName == nextState.carName) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 渲染页面
      *
      * @returns {JSX.Element}
      */
     render() {
-        console.log("parent")
         return (
             <div className="parent">
                 <h3>我是Parent组件</h3>
@@ -29,12 +42,17 @@ class App extends React.PureComponent {
     }
 }
 
-export default App;
+export default Component;
 
-class Child extends React.PureComponent {
+class Child extends React.Component {
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log(nextProps);
+        console.log(this.props.carName);
+        return this.props.carName !== nextProps.carName;
+    }
 
     render() {
-        console.log("child")
         return (
             <div>
                 <h4>我是Child组件</h4>
