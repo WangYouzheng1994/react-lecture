@@ -236,3 +236,44 @@ shouldComponentUpdate(nextProps, nextState, nextContext) {
 > 但是有个小问题：也不算是问题，说白了就是她是浅比较（引用地址比较），她比较不了对象中的属性变化，
 > 因此setState的时候引用类型（数组、对象)必须是新的
 
+---
+### Render Props 
+> 将标签传入组件，使其具备上下级结构
+
+1. 子组件接收父组件传递的组件中的内容~，子组件使用`this.props.chidren`接收到了
+parent.jsx
+```jsx
+import React, {Component} from 'react';
+import Child from "../Child";
+
+class Parent extends Component {
+    render() {
+        return (
+            <div className="parent">
+                <h3>我是Parent组件</h3>
+                <Child>你好我是parent里面传递的child内容</Child>
+            </div>
+        );
+    }
+}
+
+export default Parent;
+```
+child.jsx
+```jsx
+import React, {Component} from 'react';
+
+class Child extends Component {
+    render() {
+        return (
+            <div className="child">
+                <h3>我是child组件</h3>
+                <span>接收到的内容是：{this.props.children}</span>
+            </div>
+        );
+    }
+}
+
+export default Child;
+```
+2. 标签的嵌套，如何展示
