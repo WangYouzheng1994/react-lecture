@@ -2,10 +2,14 @@ import React from 'react';
 import Parent from "./component/Parent";
 import Child from "./component/Child";
 
-class App extends React.PureComponent {
+class App extends React.Component {
     render() {
         return (
-            <Parent><Child>123123</Child></Parent>
+            <React.Fragment>
+                <Parent>
+                    <Child>123</Child>
+                </Parent>
+            </React.Fragment>
         )
     }
 }
