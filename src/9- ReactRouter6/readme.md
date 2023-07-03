@@ -5,6 +5,11 @@
 > `react-router-dom` 包含了react-router的所有内容添加用于dom的组件，  
 > `react-router-native`用以ReactNative的Api  
 
+安装React Router6.0，目前已经是默认版本了
+```shell
+pnpm add react-router-dom
+```
+
 对比react Router5:
 1. 移除了<Switch/>、新增了<Routes/>
 2. 注册路由变了：component={组件名字} 变更为 element={<组件标签/>}
@@ -16,5 +21,31 @@
 2. rsf function函数式组件，组件接收props参数
 3. rsc 箭头函数式组件，组件不接收props
 
+### Router路由组件
+```jsx
+{/*路由链接*/}
+<NavLink className="list-group-item" to="/about">About</NavLink>
+<NavLink className="list-group-item" to="/home">Home</NavLink>
 
+{/*  注册路由  */}
+<Routes>
+    <Route path="/about" element={<About/>}/>
+    {/*可以看到demo没展示，这就是匹配到一个不会继续往下，相当于Swtich的作用*/}
+    <Route path="/about" element={<Demo/>}/>
+    <Route path="/home" element={<Home/>}/>
+</Routes>
+```
 
+### router6.0 重定向
+> 使用navigate
+
+```jsx
+<Routes>
+    <Route path="/about" element={<About/>}/>
+    {/*可以看到demo没展示，这就是匹配到一个不会继续往下，相当于Swtich的作用*/}
+    <Route path="/about" element={<Demo/>}/>
+    <Route path="/home" element={<Home/>}/>
+    {/*使用navigate 替代Redirect标签。*/}
+    <Route path="" element={<Navigate to="/about"/>}/>
+</Routes>
+```
