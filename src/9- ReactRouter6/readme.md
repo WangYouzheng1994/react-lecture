@@ -62,3 +62,23 @@ pnpm add react-router-dom
 {/*路由链接*/}
 <NavLink className={({isActive}) => isActive? 'list-group-item wyz' : 'list-group-item'} to="/about">About</NavLink>
 ```
+
+### useRoutes 详见4-useroutes
+> 函数式组件使用useRoutes 生成路由表，可以生成Routes+route的代码
+
+```jsx
+const element = useRoutes([
+    {
+        path: '/about',
+        element:<About/>
+    },
+    {
+        path: '/home',
+        element:<Home/>
+    },
+    {
+        path: '/',
+        element: <Navigate to='/about'/>
+    }
+])
+```
