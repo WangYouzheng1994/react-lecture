@@ -320,5 +320,6 @@ pnpm run build
 ```shell
 pnpm install -g serve
 serve -s build
+serve build --port端口号
 ```
 > 如果提示pnpm global报错， 手动指定path目录 以及新增变量 PNPM_HOME 即可，pnpm_home中的目录必须出现在path中哈~
