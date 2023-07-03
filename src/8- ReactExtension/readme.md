@@ -259,6 +259,7 @@ class Parent extends Component {
 
 export default Parent;
 ```
+
 child.jsx
 ```jsx
 import React, {Component} from 'react';
@@ -276,4 +277,77 @@ class Child extends Component {
 
 export default Child;
 ```
-2. 标签的嵌套，如何展示
+
+2. 标签的嵌套，并且父级标签需要传递自己的值给孩子，具体参见 6-renderpropx/component/renderprops
+> 在这里 如果使用上面的方案，是无法把Parent的state中的值传递给子组件的。除非代码中直接写死Parent里面是Child
+
+app.jsx
+```jsx
+import React from 'react';
+import Parent from "./component/Parent";
+import Child from "./component/Child";
+
+import Parent_Render from "./component/renderprops/Parent";
+import Child_Render from './component/renderprops/Child'
+
+class App extends React.Component {
+    render() {
+        return (
+            <React.Fragment>
+                <Parent>
+                    <Child>123</Child>
+                </Parent>
+                {/*这里：1.Parent的子组件是动态可传的，2. Child也可以拿到Parent的值，*/}
+                <Parent_Render render={(name) => <Child_Render name={name}>AAAAAA</Child_Render>}/>
+            </React.Fragment>
+        )
+    }
+}
+
+export default App;
+
+
+```
+
+parent.jsx
+```jsx
+import React, {Component} from 'react';
+
+class Parent extends Component {
+    state = {"name": '我要给下游的数据'}
+    render() {
+        const {name} = this.state;
+        return (
+            <div>
+                <h3>我是renderprops/Parent</h3>
+                {this.props.render(name)}
+            </div>
+        );
+    }
+}
+
+export default Parent;
+
+```
+
+child.jsx
+```jsx
+import React, {Component} from 'react';
+
+class Child extends Component {
+    render() {
+        return (
+            <div>
+                <h3>我是renderprops/child</h3>
+                上游给来的数据{this.props.name}, 标签体中的内容为{this.props.children}
+            </div>
+        );
+    }
+}
+
+export default Child;
+```
+
+---
+### errorbound错误边界，用以控制代码的报错
+
