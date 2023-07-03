@@ -59,6 +59,6 @@ pnpm add react-router-dom
 
 * 6.0版本移除了activeClassName，如果要自定义激活的class，需要将className指定为函数
 ```jsx
-
-
+{/*路由链接*/}
+<NavLink className={({isActive}) => isActive? 'list-group-item wyz' : 'list-group-item'} to="/about">About</NavLink>
 ```
