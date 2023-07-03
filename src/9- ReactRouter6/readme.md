@@ -36,7 +36,7 @@ pnpm add react-router-dom
 </Routes>
 ```
 
-### router6.0 重定向
+### router6.0 重定向 参见2-routerredirect
 > 使用navigate
 
 ```jsx
@@ -48,4 +48,17 @@ pnpm add react-router-dom
     {/*使用navigate 替代Redirect标签。*/}
     <Route path="" element={<Navigate to="/about"/>}/>
 </Routes>
+```
+
+### NavLink
+> NavLink默认在激活的时候 添加`active`的这个className
+
+> 5.0版本可以使用activeClassName针对激活的链接设置自定义class     
+
+`<NavLink activeClassName="aaaaa" className="list-group-item" to="/about">`
+
+* 6.0版本移除了activeClassName，如果要自定义激活的class，需要将className指定为函数
+```jsx
+
+
 ```
