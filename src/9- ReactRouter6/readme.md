@@ -82,3 +82,5 @@ const element = useRoutes([
     }
 ])
 ```
+---
+项目中更常见的做法是：src/routes/index.js 进行路由表的封装
