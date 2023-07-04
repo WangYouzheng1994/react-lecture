@@ -84,3 +84,31 @@ const element = useRoutes([
 ```
 ---
 项目中更常见的做法是：src/routes/index.js 进行路由表的封装
+```jsx
+// 封装路由表
+import {Navigate} from 'react-router-dom'
+import About from "../pages/About";
+import Home from "../pages/Home";
+
+export default [
+    {
+        path: '/about',
+        element:<About/>
+    },
+    {
+        path: '/home',
+        element:<Home/>
+    },
+    {
+        path: '/',
+        element: <Navigate to='/about'/>
+    }
+]
+```
+
+使用时引入
+```jsx
+const element = useRoutes(routes);
+
+{element}
+```
