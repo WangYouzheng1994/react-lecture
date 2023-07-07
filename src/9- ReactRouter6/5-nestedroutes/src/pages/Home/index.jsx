@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 const Home = () => {
     return (
         <div>
-            <h3>我是home</h3>
+            <h3>我是Home</h3>
             <ul className="nav nav-pills">
                 <li className="nav-item">
                     {/*<a className="nav-link">News</a>*/}
