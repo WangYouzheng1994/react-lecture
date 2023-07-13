@@ -1,5 +1,7 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink, Route, Routes} from "react-router-dom";
+import Message from './Message';
+import News from './News';
 
 const Home = () => {
     return (
@@ -15,7 +17,11 @@ const Home = () => {
                     <NavLink className="nav-link" to="/home/message">Message</NavLink>
                 </li>
             </ul>
-
+            <Routes>
+                <Route path="/news" element={<News/>}></Route>
+                <Route path="/message/*" element={<Message/>}></Route>
+                {/*<Route path="*" element={<Navigate to="/home/news" />}/>*/}
+            </Routes>
         </div>
     );
 };

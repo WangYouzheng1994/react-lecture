@@ -31,6 +31,7 @@ https://pnpm.io/zh/
 
 1. 安装pnpm
 ```
+//npm设置远程仓库
 npm config set registry https://registry.npm.taobao.org。
 npm i pnpm -g
 或者 npm install -g cnpm --registry=https://registry.npm.taobao.org

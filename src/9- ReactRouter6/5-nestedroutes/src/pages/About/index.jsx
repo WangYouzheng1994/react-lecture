@@ -8,11 +8,11 @@ const About = () => {
             <ul className="nav nav-pills">
                 <li className="nav-item">
                     {/*<a className="nav-link">News</a>*/}
-                    <NavLink className="nav-link" to="/home/news">News</NavLink>
+                    {/*<NavLink className="nav-link" to="/home/news">News</NavLink>*/}
                 </li>
                 <li className="nav-item">
                     {/*<a className="nav-link">Message</a>*/}
-                    <NavLink className="nav-link" to="/home/message">Message</NavLink>
+                    {/*<NavLink className="nav-link" to="/home/message">Message</NavLink>*/}
                 </li>
             </ul>
 
