@@ -16,11 +16,11 @@ export default [
         children: [
             {
                 path: 'message',
-                element:<News/>,
+                element:<Message/>,
             },
             {
                 path: 'news',
-                element:<Message/>,
+                element:<News/>,
             }
         ]
     },
