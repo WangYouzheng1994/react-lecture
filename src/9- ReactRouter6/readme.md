@@ -177,5 +177,50 @@ export default [
 
 ---
 ### 路由携带参数
-#### params
-#### states
+#### params 详见 6-router-params
+> 使用跳转链接中携带：需要声明路由的占位符。
+
+routes/index.jsx如下所示：
+```
+path: 'message',
+element:<Message/>,
+children: [
+    {
+        path: 'detail/:id/:title/:content',
+        element: <Detail/>
+    }
+]
+```
+使用携带：
+```jsx
+{/*完整路径写法*/}
+{/*<Link to={`/home/message/detail/${m.id}/${m.title}/${m.content}`}>{m.title}</Link>*/}
+{/*相对路径写法：写对的是当前路由*/}
+<Link to={`detail/${m.id}/${m.title}/${m.content}`}>{m.title}</Link>
+```
+useParams钩子，接收路由参数：
+```jsx
+import {useParams} from 'react-router-dom';
+
+function Detail(props) {
+    const {id, title, content} = useParams();
+    return (
+
+        <>
+            <div>i am detail</div>
+            <ul>
+                <li>id:{id}</li>
+                <li>title:{title}</li>
+                <li>content:{content}</li>
+            </ul>
+        </>
+
+    );
+}
+
+export default Detail;
+```
+
+#### search
+#### location.state
+
