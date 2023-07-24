@@ -372,4 +372,38 @@ export default Detail;
 ```
 ---
 
-### 编程时路由导航
+### 编程时路由导航 详见9-react-router-programming
+1. 使用useNavigate钩子，其不会再细分push，replace等方法了。
+2. v5中的withRouter将普通的组件转成路由组件也不复存在了。直接使用钩子。
+
+代码演示：
+```jsx
+import {Link, Outlet, useNavigate} from 'react-router-dom'
+
+const navigate = useNavigate();
+
+function showDetails(m) {
+    navigate("detail", {
+        replace: false,
+        state: {
+            id: m.id,
+            title: m.title,
+            content: m.content
+        }
+    });
+}
+
+/**
+ * 后退
+ */
+function back() {
+    navigate(-1)
+}
+
+/**
+ * 前进
+ */
+function forward() {
+    navigate(1)
+}
+```
