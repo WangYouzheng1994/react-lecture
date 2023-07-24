@@ -112,3 +112,70 @@ const element = useRoutes(routes);
 
 {element}
 ```
+
+---
+### 嵌套路由 详见 5-nestedroutes
+1. 使用路由表注册 
+routes/index.js
+```
+// 封装路由表
+import {Navigate} from 'react-router-dom'
+import About from "../pages/About";
+import Home from "../pages/Home";
+import News from "../pages/Home/News";
+import Message from "../pages/Home/Message";
+
+export default [
+    {
+        path: '/about',
+        element:<About/>
+    },
+    {
+        path: '/home',
+        element:<Home/>,
+        children: [
+            {
+                path: 'message',
+                element:<Message/>,
+            },
+            {
+                path: 'news',
+                element:<News/>,
+            }
+        ]
+    },
+    {
+        path: '/',
+        element: <Navigate to='/about'/>
+    }
+]
+
+```
+
+2. 跳转路由的方式
+```jsx
+<NavLink className="nav-link" to="/home/news">News</NavLink>
+{/*完整的路径方式*/}
+{/*<NavLink className="nav-link" to="/home/message">Message</NavLink>*/}
+{/*相对路径的方式*/}
+<NavLink className="nav-link" to="message">Message</NavLink>
+
+```
+3. 路由组件的展示
+```jsx
+// 可以直接使用outlet
+// 也可以用<Routes><Router>的方式
+
+<Routes>
+    {/*<Route path="/news" element={<News/>}></Route>*/}
+    {/*<Route path="/message/*" element={<Message/>}></Route>*/}
+    {/*<Route path="*" element={<Navigate to="/home/news" />}/>*/}
+</Routes>
+{/*替代指定Routes，*/}
+<Outlet/>
+```
+
+---
+### 路由携带参数
+#### params
+#### states
