@@ -221,7 +221,7 @@ function Detail(props) {
 export default Detail;
 ```
 
-#### search
+#### search 详见 7-router-state
 1. 无需在路由表声明占位符
 2. 还是需要在url中进行传递 只不过使用的是标准的 ?与&的标准url传参模式
 
@@ -281,5 +281,95 @@ export default Detail;
 ```
 
 
-#### location.state
+#### location.state 详见8-router-state
+1. state参数的路由声明也不需要占位符 
+2. 传参比v5简单了，v5是把to转成了对象同时声明路径和state对象，现在v6版本 to还是只有地址，单独分离了state参数
 
+
+路由表:
+```
+// 封装路由表
+import {Navigate} from 'react-router-dom'
+import About from "../pages/About";
+import Home from "../pages/Home";
+import News from "../pages/Home/News";
+import Message from "../pages/Home/Message";
+import Detail from "../pages/Home/Message/Detail"
+
+export default [
+    {
+        path: '/about',
+        element:<About/>
+    },
+    {
+        path: '/home',
+        element:<Home/>,
+        children: [
+            {
+                path: 'message',
+                element:<Message/>,
+                children: [
+                    {
+                        path: 'detail',
+                        element: <Detail/>
+                    }
+                ]
+            },
+            {
+                path: 'news',
+                element:<News/>
+            }
+        ]
+    },
+    {
+        path: '/',
+        element: <Navigate to='/about'/>
+    }
+]
+
+```
+
+传递参数:
+```
+<li key={m.id}>
+    {/*完整路径写法*/}
+    {/*<Link to={`/home/message/detail`} state={{
+        id:m.id,
+        title:m.title,
+        content:m.content
+    }}>{m.title}</Link>*/}
+    {/*相对路径写法：写对的是当前路由*/}
+    <Link to={`detail`} state={{
+        id:m.id,
+        title:m.title,
+        content:m.content
+    }}>{m.title}</Link>
+</li>
+```
+
+使用参数:
+```
+import React from 'react';
+import {useLocation} from 'react-router-dom';
+
+function Detail(props) {
+    const {state:{id, title, content}} = useLocation();
+
+    return (
+        <>
+            <div>i am detail</div>
+            <ul>
+                <li>id:{id}</li>
+                <li>title:{title}</li>
+                <li>content:{content}</li>
+            </ul>
+        </>
+    );
+}
+
+export default Detail;
+
+```
+---
+
+### 编程时路由导航
