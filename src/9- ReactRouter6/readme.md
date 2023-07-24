@@ -222,5 +222,64 @@ export default Detail;
 ```
 
 #### search
+1. 无需在路由表声明占位符
+2. 还是需要在url中进行传递 只不过使用的是标准的 ?与&的标准url传参模式
+
+router/index.js
+```js
+{
+    path: '/home',
+    element:<Home/>,
+    children: [
+        {
+            path: 'message',
+            element:<Message/>,
+            children: [
+                {
+                    path: 'detail',
+                    element: <Detail/>
+                }
+            ]
+        },
+        {
+            path: 'news',
+            element:<News/>
+        }
+    ]
+}
+```
+
+传递参数：
+```jsx
+{/*完整路径写法*/}
+{/*<Link to={`/home/message/detail?id=${m.id}&title=${m.title}&content=${m.content}`}>{m.title}</Link>*/}
+{/*相对路径写法：写对的是当前路由*/}
+<Link to={`detail?id=${m.id}&title=${m.title}&content=${m.content}`}>{m.title}</Link>
+```
+
+使用参数：
+```jsx
+import React from 'react';
+import {useSearchParams} from 'react-router-dom';
+
+function Detail(props) {
+    const [search, setSearch] = useSearchParams();
+    console.log(search.get('id'));
+    return (
+        <>
+            <div>i am detail</div>
+            <ul>
+                <li>id:{search.get('id')}</li>
+                <li>title:{search.get('title')}</li>
+                <li>content:{search.get('content')}</li>
+            </ul>
+        </>
+    );
+}
+
+export default Detail;
+```
+
+
 #### location.state
 
