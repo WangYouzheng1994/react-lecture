@@ -407,3 +407,12 @@ function forward() {
     navigate(1)
 }
 ```
+
+### 其他的路由钩子
+* useInRouterContext 显示组件是否是路由的上下文，也就是判定是否被router组件包裹了
+* useNavigationType 显示当前页面是怎么导航路由进来的
+  - pop：浏览器直接打开的
+  - push
+  - replace
+* useOutlet 呈现当前组件要渲染的嵌套路由，如果嵌套路由还没挂载，那么会返回null
+* useResolvedPath 给定一个URL值，解析其中的：path、search、hash
